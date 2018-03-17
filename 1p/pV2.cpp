@@ -6,13 +6,21 @@
 #include <string>
 #include <queue>
 #include <forward_list>
-// #include <fstream>
+#include <list>
+#include <stack>
 
 using namespace std;
+
+//Debub
+#define console(x) cout<<x<<endl
+#define debug(x) cout<<"Debug: "<<x<<endl
+
 
 // prototypes
 class Connection;
 class Node;
+class SCC;
+
 class Connection{
     public:
         Node* _from;
@@ -27,22 +35,40 @@ class Node{
         // forward_list<int> flist1;
     public:
 
-        int _d,_low; //for tarjan algoritm FIXME
-        forward_list<Connection> _connections;
-        forward_list<Connection> _connections_T; //lista para o algoritmo Tarjan
-        bool visited;
+        int d,low; //for tarjan algoritm FIXME
+        SCC* associatedSCC;
+        list<Connection> _connections;
+        list<Connection> _connections_T; //lista para o algoritmo Tarjan
+        bool processed;
 
-        Node():_d(-1){}
-        Node(int id):_id(id),_d(-1),visited(false){}
+        Node():d(-1),processed(false){}
+        Node(int id):_id(id),d(-1),processed(false){}
         void setId(int id){_id=id;}
         int getId(){return _id;}
         void addConnection(Node* to){
             Connection* c = new Connection(this,to);
-            _connections.emplace_after(*c); //constante time
+            _connections.push_back(*c); //constante time
         }
         void addConnection_T(Node* to){
             Connection* c = new Connection(this,to);
-            _connections_T.emplace_after(*c);
+            _connections_T.push_back(*c);
+        }
+};
+
+class SCC{
+    public:
+        SCC():smallest_id_Node(NULL){}
+        Node* smallest_id_Node;
+        list<SCC*> sub_net_conn;
+        void associateNode(Node* n){
+            // Complexity constant
+            if(smallest_id_Node==NULL || smallest_id_Node->low>n->low){
+                smallest_id_Node=n;
+            }
+        }
+        void associateSCC(SCC* s){
+            //FIXME
+            sub_net_conn.push_back(s);
         }
 };
 
@@ -101,50 +127,97 @@ class Graph
 
 class Tarjan{
     int _visited;
-    Graph _g;
-    queue<Node> _q;
+    Graph* _g;
+    stack<Node*> _q;
+    int _scc_nr;
     public:
-        Tarjan(Graph g):_visited(0),_g(g){}
+        Tarjan(Graph* g):_visited(1),_g(g),_scc_nr(0){}
+        // Tarjan(){}
+
         void execute(){
-            for (int i = 0; i < _g.getNrVertices(); i++)
+            for (int i = 0; i < _g->getNrVertices(); i++)
             {
-                if (_g._vertices[i]._d==-1)
+                if (_g->_vertices[i].d==-1)
                 {
-                    _tarjanVisit(_g._vertices[i]);
-                }
-            }
-        }
-        void _tarjanVisit(Node n){
-            n._d=_visited;
-            n._low=_visited;
-            _q.push(n);
-            //for each adj, max size constante
-            for (int i = 0; i < n._connections.max_size(); i++)
-            {
-                Node v = 
-                if(n._d==-1){//do we need visited?
-                _tarjanVisit()
+                    _tarjanVisit(_g->_vertices[i]);
                 }
             }
 
         }
+        void _tarjanVisit(Node& n){
+            n.d=_visited;
+            n.low=_visited;
+            _visited++;
+            _q.push(&n);
+            //for each adj, constant
+            for(Connection c : n._connections)
+            {
+                Node& v = *c._to;
+                if(v.d==-1){
+                    _tarjanVisit(v);
+                }
+                //did we already processed it?(Not a SCC,(not in stack and not visited))
+                if (!v.processed)
+                {
+                    n.low = min(n.low,v.low);
+                }
+                
+            }
+
+            if(n.d == n.low){
+                //Creating SCC
+                SCC scc;
+                //setting nr of Global SCC
+                _scc_nr++;
+                Node* n_q;
+
+                debug("n: "<<&n);
+                do
+                {
+                    n_q=_q.top();
+                    debug("n_q: "<<n_q<<" l: "<<n_q->low<<" id:"<<n_q->getId()<<" d:"<<n_q->d);
+                    n_q->associatedSCC=&scc;
+                    n_q->processed=true;
+                    scc.associateNode(n_q); //to smallest node, constant
+                    _q.pop();
+                    
+                } while(&n!=n_q);
+            }
+        }
+
+        void printResult(){
+            console(_scc_nr);
+        }
+
 };
 
 
 
-void debug(){
-    // test list
-    // std::str
-}
+
 
 int main(int argc, char **argv)
 {
-    // Graph g;
-    // g.loadGraphFromStdin();
+    Graph g;
+    // Graph& a=NULL;
+    g.loadGraphFromStdin();
+    // int b;
+    // int& a=b;
 
-    debug();
-    queue<Node> l;
+    
+    // cout<<"D"<<endl;
+    // for (int i = 0; i < g.getNrVertices(); i++)
+    // {
+    //     cout<<g._vertices[i].getId()<<"  " <<g._vertices[i]._connections.front()._to->getId()<<endl;
+
+    // }
+
+    Tarjan* alg=new Tarjan(&g);
+    alg->execute();
+    alg->printResult();
+    // debug();
+    // queue<Node> l;
     // l.pus
-
+    delete alg;
+    
     return 0;
 }

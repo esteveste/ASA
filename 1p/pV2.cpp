@@ -1,11 +1,5 @@
-// #include <stdlib.h>
-// #include <stdio.h>
 #include <iostream>
 #include <assert.h> /* assert */
-// #include <vector>
-// #include <string>
-// #include <queue>
-// #include <forward_list>
 #include <list>
 #include <stack>
 #include <set>
@@ -27,7 +21,7 @@ class Node
   private:
     int _id;
   public:
-    int d, low; //for tarjan algoritm FIXME
+    int d, low; //for tarjan algoritm
     shared_ptr<SCC> associatedSCC;
     list<Node *> _connections;
     bool processed;
@@ -48,7 +42,7 @@ class SCC
   public:
     SCC() : smallest_id_Node(NULL) {}
     Node *smallest_id_Node;
-    list<SCC *> sub_net_conn;
+
     void associateNode(Node *n)
     {
         // Complexity constant
@@ -56,11 +50,6 @@ class SCC
         {
             smallest_id_Node = n;
         }
-    }
-    void associateSCC(SCC *s)
-    {
-        //FIXME
-        sub_net_conn.push_back(s);
     }
     int getId() { return smallest_id_Node->getId(); }
 };
@@ -98,16 +87,13 @@ class Graph
 
     // bool _visited[10];
   public:
-    Node *_vertices; //im lazy FIXME
+    Node *vertices;
 
-    Graph()
-    {
-        _vertices = NULL;
-    }
+    Graph():vertices(NULL){}
 
     ~Graph()
     {
-        delete[] _vertices;
+        delete[] vertices;
     }
 
     void loadGraphFromStdin()
@@ -119,19 +105,18 @@ class Graph
         assert(_m >= 1);
 
         // Initializing the vertices (2N?)
-        _vertices = new Node[_n];
+        vertices = new Node[_n];
         for (int i = 0; i < _n; i++)
         {
-            _vertices[i].setId(i + 1);
+            vertices[i].setId(i + 1);
         }
 
         //read connections (1 indexed) (N)
         for (int i = 0; i < _m; i++)
         {
-            //FIXME without input verification
             int u, v;
             cin >> u >> v;
-            _vertices[u - 1].addConnection(&_vertices[v - 1]);
+            vertices[u - 1].addConnection(&vertices[v - 1]);
         }
     }
 
@@ -194,14 +179,14 @@ class Tarjan
         //V+E -> NlogN with set insertion
         for (int i = 0; i < _g->getNrVertices(); i++)
         {
-            for (Node *n_co : _g->_vertices[i]._connections)
+            for (Node *n_co : _g->vertices[i]._connections)
             {
                 //currentSCC!=toSCC
-                if (_g->_vertices[i].associatedSCC->getId() != n_co->associatedSCC->getId())
+                if (_g->vertices[i].associatedSCC->getId() != n_co->associatedSCC->getId())
                 {
                     SCC_Connection* s = new SCC_Connection();
 
-                    s->from = _g->_vertices[i].associatedSCC->getId();
+                    s->from = _g->vertices[i].associatedSCC->getId();
                     s->to = n_co->associatedSCC->getId();
                     //if the connection is already there
                     if (_sub_net_list.insert(s).second==false){ delete s; debug("delete");}
@@ -226,9 +211,9 @@ class Tarjan
         //Tarjan algoritm O(N+E)
         for (int i = 0; i < _g->getNrVertices(); i++)
         {
-            if (_g->_vertices[i].d == -1)
+            if (_g->vertices[i].d == -1)
             {
-                _tarjanVisit(_g->_vertices[i]);
+                _tarjanVisit(_g->vertices[i]);
             }
         }
 

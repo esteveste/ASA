@@ -22,13 +22,13 @@ class Connection;
 class Node;
 class SCC;
 
-class Connection
-{
-  public:
-    Node *_from;
-    Node *_to;
-    Connection(Node *from, Node *to) : _from(from), _to(to) {}
-};
+// class Connection
+// {
+//   public:
+//     Node *_from;
+//     Node *_to;
+//     Connection(Node *from, Node *to) : _from(from), _to(to) {}
+// };
 
 class Node
 {
@@ -39,25 +39,18 @@ class Node
   public:
     int d, low; //for tarjan algoritm FIXME
     shared_ptr<SCC> associatedSCC;
-    list<Connection *> _connections;
+    list<Node *> _connections;
     // list<Connection> _connections_T; //lista para o algoritmo Tarjan
     bool processed;
 
     Node() : d(-1), processed(false) {}
     Node(int id) : _id(id), d(-1), processed(false) {}
-    ~Node()
-    {
 
-        for (Connection *n : _connections)
-        {
-            delete n;
-        }
-    }
     void setId(int id) { _id = id; }
     int getId() { return _id; }
     void addConnection(Node *to)
     {
-        _connections.push_back(new Connection(this, to)); //constante time
+        _connections.push_back(to); //constante time
     }
     // void addConnection_T(Node* to){
     //     Connection* c = new Connection(this,to);
@@ -103,22 +96,45 @@ class SCC_Connection
         console(getSCCFrom_id() << " " << getSCCTo_id());
     }
 };
+struct SCC_Con{
+    int from;
+    int to;
+};
 //compare (constant)
-bool compare_SCC_Connection(SCC_Connection *first, SCC_Connection *second)
+// bool compare_SCC_Connection(SCC_Connection *first, SCC_Connection *second)
+// {
+//     if (first->getSCCFrom_id() > second->getSCCFrom_id())
+//         return false;
+//     else if (first->getSCCFrom_id() < second->getSCCFrom_id())
+//         return true;
+//     else
+//     {
+//         if (first->getSCCTo_id() > second->getSCCTo_id())
+//             return false;
+//         else
+//             return true;
+//     }
+// }
+//compare (constant)
+struct compare_SCC_Connection
 {
-    if (first->getSCCFrom_id() > second->getSCCFrom_id())
-        return false;
-    else if (first->getSCCFrom_id() < second->getSCCFrom_id())
-        return true;
-    else
+    bool operator()(SCC_Con *first, SCC_Con *second)
     {
-        if (first->getSCCTo_id() > second->getSCCTo_id())
+        if (first->from > second->from)
             return false;
-        else
+        else if (first->from < second->from)
             return true;
+        else
+        {
+            if (first->to > second->to)
+                return false;
+            else if (first->to < second->to)
+                return true;
+            else
+                return false;
+        }
     }
-}
-
+};
 class Graph
 {
   private:
@@ -168,25 +184,6 @@ class Graph
     int getNrVertices() { return _n; }
 };
 
-struct classcomp
-{
-    bool operator()(SCC_Connection *first, SCC_Connection *second)
-    {
-        if (first->getSCCFrom_id() > second->getSCCFrom_id())
-            return false;
-        else if (first->getSCCFrom_id() < second->getSCCFrom_id())
-            return true;
-        else
-        {
-            if (first->getSCCTo_id() > second->getSCCTo_id())
-                return false;
-            else if (first->getSCCTo_id() < second->getSCCTo_id())
-                return true;
-            else
-                return false;
-        }
-    }
-};
 
 class Tarjan
 {
@@ -195,7 +192,7 @@ class Tarjan
     stack<Node *> _q;
     int _scc_nr;
     // int _scc_conn_nr;
-    set<SCC_Connection *, classcomp> _sub_net_list;
+    set<SCC_Con *, compare_SCC_Connection> _sub_net_list;
 
     void _tarjanVisit(Node &n)
     {
@@ -204,17 +201,17 @@ class Tarjan
         _visited++;
         _q.push(&n);
         //for each adj, constant
-        for (Connection *c : n._connections)
+        for (Node *v : n._connections)
         {
-            Node &v = *(c->_to);
-            if (v.d == -1)
+            // Node &v = *(c->_to);
+            if (v->d == -1)
             {
-                _tarjanVisit(v);
+                _tarjanVisit(*v);
             }
             //did we already processed it?(Not a SCC,(not in stack and not visited))
-            if (!v.processed)
+            if (!v->processed)
             {
-                n.low = min(n.low, v.low);
+                n.low = min(n.low, v->low);
             }
         }
 
@@ -249,14 +246,19 @@ class Tarjan
         //V+E
         for (int i = 0; i < _g->getNrVertices(); i++)
         {
-            for (Connection *c : _g->_vertices[i]._connections)
+            for (Node *n_co : _g->_vertices[i]._connections)
             {
                 //currentSCC!=toSCC
-                if (_g->_vertices[i].associatedSCC->getId() != c->_to->associatedSCC->getId())
+                if (_g->_vertices[i].associatedSCC->getId() != n_co->associatedSCC->getId())
                 {
                     // _scc_conn_nr++;
                     // new SCC_Connection(_g->_vertices[i].associatedSCC, c->_to->associatedSCC);
-                    _sub_net_list.insert(new SCC_Connection(_g->_vertices[i].associatedSCC, c->_to->associatedSCC));
+                    SCC_Con* s = new SCC_Con();
+
+                    s->from = _g->_vertices[i].associatedSCC->getId();
+                    s->to = n_co->associatedSCC->getId();
+                    //if the connection is already there
+                    if (_sub_net_list.insert(s).second==false){ delete s; debug("delete");}
                 }
             }
         }
@@ -269,7 +271,7 @@ class Tarjan
     Tarjan(Graph *g) : _visited(1), _g(g), _scc_nr(0) {}
     ~Tarjan()
     {
-        for (SCC_Connection *c : _sub_net_list)
+        for (SCC_Con *c : _sub_net_list)
         {
             delete c;
         }
@@ -294,9 +296,9 @@ class Tarjan
     {
         console(_scc_nr);
         console(_sub_net_list.size());
-        for (SCC_Connection *c : _sub_net_list)
+        for (SCC_Con *c : _sub_net_list)
         {
-            c->print_output_connection();
+            console(c->from<<" "<<c->to);
         }
     }
 };

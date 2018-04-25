@@ -69,14 +69,7 @@ struct compare_SCC_Connection
         else if (first->from < second->from)
             return true;
         else
-        {
-            if (first->to > second->to)
-                return false;
-            else if (first->to < second->to)
-                return true;
-            else
-                return false;
-        }
+                return first->to < second->to;
     }
 };
 class Graph

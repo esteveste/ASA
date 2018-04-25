@@ -1,0 +1,701 @@
+desc: (none)
+cmd: ./projV2D
+time_unit: i
+#-----------
+snapshot=0
+#-----------
+time=0
+mem_heap_B=0
+mem_heap_extra_B=0
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=1
+#-----------
+time=9685100
+mem_heap_B=1408240
+mem_heap_extra_B=34320
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=2
+#-----------
+time=32896034
+mem_heap_B=1574968
+mem_heap_extra_B=145472
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=3
+#-----------
+time=58855818
+mem_heap_B=1761400
+mem_heap_extra_B=269760
+mem_stacks_B=0
+heap_tree=detailed
+n4: 1761400 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 1280008 0x109BB6: Graph::loadGraphFromStdin() (pV2.cpp:101)
+  n0: 1280008 0x10928A: main (pV2.cpp:231)
+ n1: 404592 0x109C8E: Graph::loadGraphFromStdin() (new_allocator.h:104)
+  n0: 404592 0x10928A: main (pV2.cpp:231)
+ n1: 72704 0x4EBA9BE: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.22)
+  n1: 72704 0x400F858: call_init.part.0 (dl-init.c:72)
+   n1: 72704 0x400F969: _dl_init (dl-init.c:30)
+    n0: 72704 0x4000C58: ??? (in /lib/x86_64-linux-gnu/ld-2.24.so)
+ n0: 4096 in 1 place, below massif's threshold (1.00%)
+#-----------
+snapshot=4
+#-----------
+time=78603150
+mem_heap_B=1903048
+mem_heap_extra_B=364192
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=5
+#-----------
+time=95691998
+mem_heap_B=2026048
+mem_heap_extra_B=446192
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=6
+#-----------
+time=122032380
+mem_heap_B=2214256
+mem_heap_extra_B=571664
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=7
+#-----------
+time=141182562
+mem_heap_B=2351152
+mem_heap_extra_B=662928
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=8
+#-----------
+time=172663312
+mem_heap_B=2575552
+mem_heap_extra_B=812528
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=9
+#-----------
+time=195780836
+mem_heap_B=2740000
+mem_heap_extra_B=922160
+mem_stacks_B=0
+heap_tree=detailed
+n4: 2740000 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 1383192 0x109C8E: Graph::loadGraphFromStdin() (new_allocator.h:104)
+  n0: 1383192 0x10928A: main (pV2.cpp:231)
+ n1: 1280008 0x109BB6: Graph::loadGraphFromStdin() (pV2.cpp:101)
+  n0: 1280008 0x10928A: main (pV2.cpp:231)
+ n1: 72704 0x4EBA9BE: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.22)
+  n1: 72704 0x400F858: call_init.part.0 (dl-init.c:72)
+   n1: 72704 0x400F969: _dl_init (dl-init.c:30)
+    n0: 72704 0x4000C58: ??? (in /lib/x86_64-linux-gnu/ld-2.24.so)
+ n0: 4096 in 1 place, below massif's threshold (1.00%)
+#-----------
+snapshot=10
+#-----------
+time=215808064
+mem_heap_B=2882896
+mem_heap_extra_B=1017424
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=11
+#-----------
+time=232167472
+mem_heap_B=2999176
+mem_heap_extra_B=1094944
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=12
+#-----------
+time=257269784
+mem_heap_B=3177520
+mem_heap_extra_B=1213840
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=13
+#-----------
+time=279580148
+mem_heap_B=3336688
+mem_heap_extra_B=1319952
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=14
+#-----------
+time=293524500
+mem_heap_B=3435736
+mem_heap_extra_B=1385984
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=15
+#-----------
+time=315837748
+mem_heap_B=3594544
+mem_heap_extra_B=1491856
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=16
+#-----------
+time=338152130
+mem_heap_B=3753496
+mem_heap_extra_B=1597824
+mem_stacks_B=0
+heap_tree=detailed
+n4: 3753496 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 2396688 0x109C8E: Graph::loadGraphFromStdin() (new_allocator.h:104)
+  n0: 2396688 0x10928A: main (pV2.cpp:231)
+ n1: 1280008 0x109BB6: Graph::loadGraphFromStdin() (pV2.cpp:101)
+  n0: 1280008 0x10928A: main (pV2.cpp:231)
+ n1: 72704 0x4EBA9BE: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.22)
+  n1: 72704 0x400F858: call_init.part.0 (dl-init.c:72)
+   n1: 72704 0x400F969: _dl_init (dl-init.c:30)
+    n0: 72704 0x4000C58: ??? (in /lib/x86_64-linux-gnu/ld-2.24.so)
+ n0: 4096 in 1 place, below massif's threshold (1.00%)
+#-----------
+snapshot=17
+#-----------
+time=366037938
+mem_heap_B=3952744
+mem_heap_extra_B=1730656
+mem_stacks_B=0
+heap_tree=detailed
+n4: 3952744 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 2595936 0x109C8E: Graph::loadGraphFromStdin() (new_allocator.h:104)
+  n0: 2595936 0x10928A: main (pV2.cpp:231)
+ n1: 1280008 0x109BB6: Graph::loadGraphFromStdin() (pV2.cpp:101)
+  n0: 1280008 0x10928A: main (pV2.cpp:231)
+ n1: 72704 0x4EBA9BE: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.22)
+  n1: 72704 0x400F858: call_init.part.0 (dl-init.c:72)
+   n1: 72704 0x400F969: _dl_init (dl-init.c:30)
+    n0: 72704 0x4000C58: ??? (in /lib/x86_64-linux-gnu/ld-2.24.so)
+ n0: 4096 in 1 place, below massif's threshold (1.00%)
+#-----------
+snapshot=18
+#-----------
+time=385194984
+mem_heap_B=4088872
+mem_heap_extra_B=1821408
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=19
+#-----------
+time=404354592
+mem_heap_B=4225456
+mem_heap_extra_B=1912464
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=20
+#-----------
+time=418724234
+mem_heap_B=4328224
+mem_heap_extra_B=1980976
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=21
+#-----------
+time=442666738
+mem_heap_B=4499464
+mem_heap_extra_B=2095136
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=22
+#-----------
+time=466610030
+mem_heap_B=4670848
+mem_heap_extra_B=2209392
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=23
+#-----------
+time=490550994
+mem_heap_B=4841368
+mem_heap_extra_B=2323072
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=24
+#-----------
+time=509705816
+mem_heap_B=4977784
+mem_heap_extra_B=2414016
+mem_stacks_B=0
+heap_tree=detailed
+n3: 4977784 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 3620976 0x109C8E: Graph::loadGraphFromStdin() (new_allocator.h:104)
+  n0: 3620976 0x10928A: main (pV2.cpp:231)
+ n1: 1280008 0x109BB6: Graph::loadGraphFromStdin() (pV2.cpp:101)
+  n0: 1280008 0x10928A: main (pV2.cpp:231)
+ n0: 76800 in 2 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=25
+#-----------
+time=528858604
+mem_heap_B=5114608
+mem_heap_extra_B=2505232
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=26
+#-----------
+time=548015856
+mem_heap_B=5250664
+mem_heap_extra_B=2595936
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=27
+#-----------
+time=567168898
+mem_heap_B=5386840
+mem_heap_extra_B=2686720
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=28
+#-----------
+time=581538810
+mem_heap_B=5488768
+mem_heap_extra_B=2754672
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=29
+#-----------
+time=605486520
+mem_heap_B=5659936
+mem_heap_extra_B=2868784
+mem_stacks_B=0
+heap_tree=detailed
+n3: 5659936 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 4303128 0x109C8E: Graph::loadGraphFromStdin() (new_allocator.h:104)
+  n0: 4303128 0x10928A: main (pV2.cpp:231)
+ n1: 1280008 0x109BB6: Graph::loadGraphFromStdin() (pV2.cpp:101)
+  n0: 1280008 0x10928A: main (pV2.cpp:231)
+ n0: 76800 in 2 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=30
+#-----------
+time=637572978
+mem_heap_B=5887840
+mem_heap_extra_B=3020720
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=31
+#-----------
+time=653615972
+mem_heap_B=6001888
+mem_heap_extra_B=3096752
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=32
+#-----------
+time=669660940
+mem_heap_B=6116248
+mem_heap_extra_B=3172992
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=33
+#-----------
+time=693728884
+mem_heap_B=6287008
+mem_heap_extra_B=3286832
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=34
+#-----------
+time=717797778
+mem_heap_B=6458368
+mem_heap_extra_B=3401072
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=35
+#-----------
+time=741865304
+mem_heap_B=6629344
+mem_heap_extra_B=3515056
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=36
+#-----------
+time=773952862
+mem_heap_B=6856048
+mem_heap_extra_B=3666192
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=37
+#-----------
+time=798017114
+mem_heap_B=7025512
+mem_heap_extra_B=3779168
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=38
+#-----------
+time=814059772
+mem_heap_B=7138792
+mem_heap_extra_B=3854688
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=39
+#-----------
+time=830104896
+mem_heap_B=7251928
+mem_heap_extra_B=3930112
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=40
+#-----------
+time=846148354
+mem_heap_B=7365208
+mem_heap_extra_B=4005632
+mem_stacks_B=0
+heap_tree=detailed
+n3: 7365208 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 6008400 0x109C8E: Graph::loadGraphFromStdin() (new_allocator.h:104)
+  n0: 6008400 0x10928A: main (pV2.cpp:231)
+ n1: 1280008 0x109BB6: Graph::loadGraphFromStdin() (pV2.cpp:101)
+  n0: 1280008 0x10928A: main (pV2.cpp:231)
+ n0: 76800 in 2 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=41
+#-----------
+time=862193872
+mem_heap_B=7477768
+mem_heap_extra_B=4080672
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=42
+#-----------
+time=878237606
+mem_heap_B=7590784
+mem_heap_extra_B=4156016
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=43
+#-----------
+time=894284510
+mem_heap_B=7703512
+mem_heap_extra_B=4231168
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=44
+#-----------
+time=910331220
+mem_heap_B=7816168
+mem_heap_extra_B=4306272
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=45
+#-----------
+time=934398652
+mem_heap_B=7985872
+mem_heap_extra_B=4419408
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=46
+#-----------
+time=950443158
+mem_heap_B=8098576
+mem_heap_extra_B=4494544
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=47
+#-----------
+time=966488114
+mem_heap_B=8211328
+mem_heap_extra_B=4569712
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=48
+#-----------
+time=990554748
+mem_heap_B=8381008
+mem_heap_extra_B=4682832
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=49
+#-----------
+time=1006599638
+mem_heap_B=8493904
+mem_heap_extra_B=4758096
+mem_stacks_B=0
+heap_tree=detailed
+n3: 8493904 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 7137096 0x109C8E: Graph::loadGraphFromStdin() (new_allocator.h:104)
+  n0: 7137096 0x10928A: main (pV2.cpp:231)
+ n1: 1280008 0x109BB6: Graph::loadGraphFromStdin() (pV2.cpp:101)
+  n0: 1280008 0x10928A: main (pV2.cpp:231)
+ n0: 76800 in 2 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=50
+#-----------
+time=1015535339
+mem_heap_B=8558112
+mem_heap_extra_B=4800080
+mem_stacks_B=0
+heap_tree=detailed
+n3: 8558112 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 7200000 0x109C8E: Graph::loadGraphFromStdin() (new_allocator.h:104)
+  n0: 7200000 0x10928A: main (pV2.cpp:231)
+ n1: 1280008 0x109BB6: Graph::loadGraphFromStdin() (pV2.cpp:101)
+  n0: 1280008 0x10928A: main (pV2.cpp:231)
+ n0: 78104 in 5 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=51
+#-----------
+time=1020241188
+mem_heap_B=8638040
+mem_heap_extra_B=4855824
+mem_stacks_B=0
+heap_tree=detailed
+n3: 8638040 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 7200000 0x109C8E: Graph::loadGraphFromStdin() (new_allocator.h:104)
+  n0: 7200000 0x10928A: main (pV2.cpp:231)
+ n1: 1280008 0x109BB6: Graph::loadGraphFromStdin() (pV2.cpp:101)
+  n0: 1280008 0x10928A: main (pV2.cpp:231)
+ n0: 158032 in 15 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=52
+#-----------
+time=1020925301
+mem_heap_B=8719064
+mem_heap_extra_B=4909840
+mem_stacks_B=0
+heap_tree=detailed
+n3: 8719064 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 7200000 0x109C8E: Graph::loadGraphFromStdin() (new_allocator.h:104)
+  n0: 7200000 0x10928A: main (pV2.cpp:231)
+ n1: 1280008 0x109BB6: Graph::loadGraphFromStdin() (pV2.cpp:101)
+  n0: 1280008 0x10928A: main (pV2.cpp:231)
+ n0: 239056 in 15 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=53
+#-----------
+time=1021747338
+mem_heap_B=8800952
+mem_heap_extra_B=4964432
+mem_stacks_B=0
+heap_tree=detailed
+n4: 8800952 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 7200000 0x109C8E: Graph::loadGraphFromStdin() (new_allocator.h:104)
+  n0: 7200000 0x10928A: main (pV2.cpp:231)
+ n1: 1280008 0x109BB6: Graph::loadGraphFromStdin() (pV2.cpp:101)
+  n0: 1280008 0x10928A: main (pV2.cpp:231)
+ n0: 197440 0x1094CF: main (new_allocator.h:104)
+ n0: 123504 in 14 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=54
+#-----------
+time=1022639397
+mem_heap_B=8883560
+mem_heap_extra_B=5019504
+mem_stacks_B=0
+heap_tree=detailed
+n4: 8883560 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 7200000 0x109C8E: Graph::loadGraphFromStdin() (new_allocator.h:104)
+  n0: 7200000 0x10928A: main (pV2.cpp:231)
+ n1: 1280008 0x109BB6: Graph::loadGraphFromStdin() (pV2.cpp:101)
+  n0: 1280008 0x10928A: main (pV2.cpp:231)
+ n0: 266280 0x1094CF: main (new_allocator.h:104)
+ n0: 137272 in 14 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=55
+#-----------
+time=1023636071
+mem_heap_B=8966984
+mem_heap_extra_B=5075120
+mem_stacks_B=0
+heap_tree=detailed
+n4: 8966984 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 7200000 0x109C8E: Graph::loadGraphFromStdin() (new_allocator.h:104)
+  n0: 7200000 0x10928A: main (pV2.cpp:231)
+ n1: 1280008 0x109BB6: Graph::loadGraphFromStdin() (pV2.cpp:101)
+  n0: 1280008 0x10928A: main (pV2.cpp:231)
+ n0: 335800 0x1094CF: main (new_allocator.h:104)
+ n0: 151176 in 14 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=56
+#-----------
+time=1024782546
+mem_heap_B=9051320
+mem_heap_extra_B=5131344
+mem_stacks_B=0
+heap_tree=detailed
+n4: 9051320 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 7200000 0x109C8E: Graph::loadGraphFromStdin() (new_allocator.h:104)
+  n0: 7200000 0x10928A: main (pV2.cpp:231)
+ n1: 1280008 0x109BB6: Graph::loadGraphFromStdin() (pV2.cpp:101)
+  n0: 1280008 0x10928A: main (pV2.cpp:231)
+ n0: 406080 0x1094CF: main (new_allocator.h:104)
+ n0: 165232 in 14 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=57
+#-----------
+time=1026178581
+mem_heap_B=9136472
+mem_heap_extra_B=5188112
+mem_stacks_B=0
+heap_tree=detailed
+n4: 9136472 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 7200000 0x109C8E: Graph::loadGraphFromStdin() (new_allocator.h:104)
+  n0: 7200000 0x10928A: main (pV2.cpp:231)
+ n1: 1280008 0x109BB6: Graph::loadGraphFromStdin() (pV2.cpp:101)
+  n0: 1280008 0x10928A: main (pV2.cpp:231)
+ n0: 477040 0x1094CF: main (new_allocator.h:104)
+ n0: 179424 in 14 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=58
+#-----------
+time=1027906440
+mem_heap_B=9222536
+mem_heap_extra_B=5245488
+mem_stacks_B=0
+heap_tree=detailed
+n4: 9222536 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 7200000 0x109C8E: Graph::loadGraphFromStdin() (new_allocator.h:104)
+  n0: 7200000 0x10928A: main (pV2.cpp:231)
+ n1: 1280008 0x109BB6: Graph::loadGraphFromStdin() (pV2.cpp:101)
+  n0: 1280008 0x10928A: main (pV2.cpp:231)
+ n0: 548760 0x1094CF: main (new_allocator.h:104)
+ n0: 193768 in 14 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=59
+#-----------
+time=1030194766
+mem_heap_B=9309368
+mem_heap_extra_B=5303376
+mem_stacks_B=0
+heap_tree=detailed
+n4: 9309368 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 7200000 0x109C8E: Graph::loadGraphFromStdin() (new_allocator.h:104)
+  n0: 7200000 0x10928A: main (pV2.cpp:231)
+ n1: 1280008 0x109BB6: Graph::loadGraphFromStdin() (pV2.cpp:101)
+  n0: 1280008 0x10928A: main (pV2.cpp:231)
+ n0: 621120 0x1094CF: main (new_allocator.h:104)
+ n0: 208240 in 14 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=60
+#-----------
+time=1033809217
+mem_heap_B=9397064
+mem_heap_extra_B=5361840
+mem_stacks_B=0
+heap_tree=detailed
+n4: 9397064 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 7200000 0x109C8E: Graph::loadGraphFromStdin() (new_allocator.h:104)
+  n0: 7200000 0x10928A: main (pV2.cpp:231)
+ n1: 1280008 0x109BB6: Graph::loadGraphFromStdin() (pV2.cpp:101)
+  n0: 1280008 0x10928A: main (pV2.cpp:231)
+ n0: 694200 0x1094CF: main (new_allocator.h:104)
+ n0: 222856 in 14 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=61
+#-----------
+time=1042211579
+mem_heap_B=9485624
+mem_heap_extra_B=5420880
+mem_stacks_B=0
+heap_tree=peak
+n5: 9485624 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 7200000 0x109C8E: Graph::loadGraphFromStdin() (new_allocator.h:104)
+  n0: 7200000 0x10928A: main (pV2.cpp:231)
+ n1: 1280008 0x109BB6: Graph::loadGraphFromStdin() (pV2.cpp:101)
+  n0: 1280008 0x10928A: main (pV2.cpp:231)
+ n0: 768000 0x1094CF: main (new_allocator.h:104)
+ n0: 153608 0x1093F9: main (pV2.cpp:180)
+ n0: 84008 in 13 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=62
+#-----------
+time=1051896742
+mem_heap_B=9512160
+mem_heap_extra_B=5438560
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=63
+#-----------
+time=1061581904
+mem_heap_B=9518064
+mem_heap_extra_B=5442496
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=64
+#-----------
+time=1071267186
+mem_heap_B=9518976
+mem_heap_extra_B=5443104
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=65
+#-----------
+time=1080952305
+mem_heap_B=9519128
+mem_heap_extra_B=5443216
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=66
+#-----------
+time=1090637500
+mem_heap_B=9519216
+mem_heap_extra_B=5443264
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=67
+#-----------
+time=1122549492
+mem_heap_B=9520232
+mem_heap_extra_B=5443256
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=68
+#-----------
+time=1132234620
+mem_heap_B=2625192
+mem_heap_extra_B=847080
+mem_stacks_B=0
+heap_tree=empty

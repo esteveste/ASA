@@ -35,6 +35,8 @@ class Graph{
         int _c;
         Vertex* _source;
         Vertex* _target;
+        bool** _outputM;
+        int _cost;
     public:
 
         Graph():_source(new Vertex(-1,0)),_target(new Vertex(-2,0)){}
@@ -46,6 +48,10 @@ class Graph{
         cin >> _c;//colunas
         assert(_l >= 1);
         assert(_c >= 1);
+
+        bool outm[_l][_c];
+        _outputM=(bool**) outm;
+
         int m[2][_l][_c];
         int wv[_l][_c-1];
         int wh[_l-1][_c];
@@ -107,9 +113,25 @@ class Graph{
         //     cout<<endl;
         // }
         // cout<<endl;
+    }
 
+    void printOutput(){
+        cout<<_cost<<endl<<endl;
+
+        for (int i = 0; i < _l; i++)
+        {
+            for (int j = 0; j < _c; j++)
+            {
+                cout << ((_outputM[i][j])?"P":"C");
+                if (j<_c-1)
+                    cout<<" ";
+            }
+            cout << endl;
+        }
 
     }
+
+
 };
 
 

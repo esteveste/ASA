@@ -11,6 +11,7 @@
 #include <memory>
 
 using namespace std;
+class Vertex;
 
 class ResidualArc
 {
@@ -22,10 +23,10 @@ class ResidualArc
     int flux;
     int getCapacity() { return _capacity - flux; }
     ResidualArc *pair;
-
+    Vertex* dest_vertex;
     // Always init in pairs otherwise will SEGFAULT in pair
-    ResidualArc(int c) : _capacity(c), flux(0) {}
-    ResidualArc(int c, ResidualArc *p) : _capacity(c), flux(0), pair(p)
+    ResidualArc(int c,Vertex* dest) : _capacity(c), flux(0),pair(NULL),dest_vertex(dest) {}
+    ResidualArc(int c,Vertex* dest, ResidualArc *p) : _capacity(c), flux(0), pair(p),dest_vertex(dest)
     {
         p->_setPair(pair);
     }
@@ -37,19 +38,27 @@ class Vertex
 {
   private:
     //position
-    int _l, _c;
+    // int _l, _c;
 
   public:
-    list<Vertex *> _connections;
+    list<ResidualArc *> _arcs;
+
     int excess_flux;
     int height;
     bool processed;
     Vertex() : excess_flux(0), height(0) {}
-    Vertex(int l, int c) : _l(l), _c(c), excess_flux(0), height(0) {}
+    // Vertex(int l, int c) : _l(l), _c(c), excess_flux(0), height(0) {}
 
-    void addConnection(Vertex *to)
+    ~Vertex(){
+        for(ResidualArc *c : _arcs)
+        {
+            delete c;
+        }
+    }
+
+    void addArc(ResidualArc *c)
     {
-        _connections.push_back(to); //constante time
+        _arcs.push_back(c); //constante time
     }
 };
 
@@ -64,11 +73,18 @@ class Graph
     bool **_outputM;
     int _cost;
 
+    // ZERO INDEXED
+    Vertex* getVertex(int l,int c){
+        return &vertices[l*_c+c];
+    }
+
   public:
-    Graph() : _source(new Vertex(-1, 0)), _target(new Vertex(-2, 0)) {}
+    Graph() : _source(new Vertex()), _target(new Vertex()) {}
 
     ~Graph()
     {
+        delete _source;
+        delete _target;
         delete vertices;
     }
 
@@ -85,9 +101,56 @@ class Graph
 
         vertices = new Vertex[_l * _c];
 
-        int m[2][_l][_c];
-        int wv[_l][_c - 1];
-        int wh[_l - 1][_c];
+        //Get The P's
+        for (int i = 0; i < _l; i++)
+        {
+            for (int j = 0; j < _c; j++)
+            {
+                int p;
+                cin >> p;
+                ResidualArc *s_arc = new ResidualArc(p,getVertex(i,j));
+                ResidualArc *v_pair = new ResidualArc(0,_source,s_arc);
+                _source->addArc(s_arc);
+                getVertex(i,j)->addArc(v_pair);
+            }
+        }
+        //Get The C's
+        for (int i = 0; i < _l; i++)
+        {
+            for (int j = 0; j < _c; j++)
+            {
+                int c;
+                cin >> c;
+                ResidualArc *t_arc = new ResidualArc(0,getVertex(i,j));
+                ResidualArc *v_pair = new ResidualArc(c,_target,t_arc);
+                _target->addArc(t_arc);
+                getVertex(i,j)->addArc(v_pair);
+            }
+        }
+
+        for (int i = 0; i < _l; i++)
+        {
+            for (int j = 0; j < _c - 1; j++)
+            {
+                cin >> wv[i][j];
+            }
+        }
+        for (int i = 0; i < _l - 1; i++)
+        {
+            for (int j = 0; j < _c; j++)
+            {
+                cin >> wh[i][j];
+            }
+        }
+
+
+
+
+
+
+        // int m[2][_l][_c];
+        // int wv[_l][_c - 1];
+        // int wh[_l - 1][_c];
 
         //FIXME Nao facas matrizes
         for (int t = 0; t < 2; t++)

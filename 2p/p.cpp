@@ -239,13 +239,26 @@ class ReLabel
         } 
     }
     void push(ResidualArc* arc){
-        // assert(arc->pair->dest_vertex)
+        // assert(arc->getCapacity()>0 && u.height==arc->dest_vertex->height+1)
     }
     void discharge(Vertex u)
     {
+        list<ResidualArc*> v_arcs = u._arcs;
+
         while (u.excess_flux > 0)
         {
-            list<ResidualArc*> v_arc = u._arcs;
+            if (v_arcs.size()==0)
+            {
+                relabel(u);
+                v_arcs = u._arcs;
+            }else
+            {
+                ResidualArc* arc = v_arcs.front();
+                v_arcs.pop_front();
+                if(arc->getCapacity()>0 && u.height==arc->dest_vertex->height+1){
+                    // push();
+                }
+            }
 
         }
     }

@@ -6,22 +6,44 @@
 #include <assert.h> /* assert */
 #include <list>
 #include <stack>
+#include <queue>
 #include <set>
 #include <memory>
 
 using namespace std;
+
+class ResidualArc{
+    private:
+        int _capacity;
+        void _setPair(ResidualArc* p){pair=p;}
+    public:
+        int flux;
+        int getCapacity(){return _capacity - flux;}
+        ResidualArc* pair;
+
+        // Always init in pairs otherwise will SEGFAULT in pair
+        ResidualArc(int c):_capacity(c),flux(0){}
+        ResidualArc(int c,ResidualArc* p):_capacity(c),flux(0),pair(p){
+            p->_setPair(pair);
+        }
+        void addFlux(int f){flux+=f;}
+        int getFlux(){return flux;}
+};
 
 class Vertex
 {
   private:
     //position
     int _l,_c;
-  public:
-    int d, low; //for tarjan algoritm
-    list<Vertex *> _connections;
-    bool processed;
 
-    Vertex(int l,int c) : _l(l), _c(c) {}
+
+  public:
+    list<Vertex *> _connections;
+    int excess_flux;
+    int height;
+    bool processed;
+    Vertex():excess_flux(0),height(0) {}
+    Vertex(int l,int c) : _l(l), _c(c),excess_flux(0),height(0) {}
 
     void addConnection(Vertex *to)
     {
@@ -35,11 +57,16 @@ class Graph{
         int _c;
         Vertex* _source;
         Vertex* _target;
+        Vertex* vertices;
         bool** _outputM;
         int _cost;
     public:
 
         Graph():_source(new Vertex(-1,0)),_target(new Vertex(-2,0)){}
+
+        ~Graph(){
+            delete vertices;
+        }
 
         void loadGraphFromStdin()
     {
@@ -52,10 +79,14 @@ class Graph{
         bool outm[_l][_c];
         _outputM=(bool**) outm;
 
+
+        vertices = new Vertex[_l*_c];
+
         int m[2][_l][_c];
         int wv[_l][_c-1];
         int wh[_l-1][_c];
-
+        
+        //FIXME Nao facas matrizes
         for (int t = 0; t < 2; t++)
         {
             for (int i = 0; i < _l; i++)
@@ -80,39 +111,6 @@ class Graph{
                 cin >>wh[i][j];
             }
         }
-        // cp_matrix =  m;
-
-        // for (int t = 0; t < 2; t++)
-        // {
-        //     for (int i = 0; i < _l; i++)
-        //     {
-        //         for (int j = 0; j < _c; j++)
-        //         {
-        //             cout << m[t][i][j];
-        //         }
-        //         cout<<endl;
-        //     }
-        //     cout<<endl;
-        // }
-        // cout<<endl;
-        // for (int i = 0; i < _l; i++)
-        // {
-        //     for (int j = 0; j < _c-1; j++)
-        //     {
-        //         cout << wv[i][j];
-        //     }
-        //     cout<<endl;
-        // }
-        // cout<<endl;
-        // for (int i = 0; i < _l-1; i++)
-        // {
-        //     for (int j = 0; j < _c; j++)
-        //     {
-        //         cout << wh[i][j];
-        //     }
-        //     cout<<endl;
-        // }
-        // cout<<endl;
     }
 
     void printOutput(){
@@ -135,78 +133,27 @@ class Graph{
 };
 
 
-// void Graph::loadGraphFromStdin()
-//     {
-//         // Read input
-//         int _n; 
-//         int _m; 
-//         cin >> _n;//linhas
-//         cin >> _m;//colunas
-//         assert(_n >= 1);
-//         assert(_m >= 1);
-//         int m[2][_n][_m];
-//         int wv[_n][_m-1];
-//         int wh[_n-1][_m];
-//         for (int t = 0; t < 2; t++)
-//         {
-//             for (int i = 0; i < _n; i++)
-//             {
-//                 for (int j = 0; j < _m; j++)
-//                 {
-//                     cin >> m[t][i][j];
-//                 }
-//             }
-//         }
-//         for (int i = 0; i < _n; i++)
-//         {
-//             for (int j = 0; j < _m-1; j++)
-//             {
-//                 cin >> wv[i][j];
-//             }
-//         }
-//         for (int i = 0; i < _n-1; i++)
-//         {
-//             for (int j = 0; j < _m; j++)
-//             {
-//                 cin >>wh[i][j];
-//             }
-//         }
-//         // cp_matrix =  m;
+class ReLabel{
 
-//         // for (int t = 0; t < 2; t++)
-//         // {
-//         //     for (int i = 0; i < _n; i++)
-//         //     {
-//         //         for (int j = 0; j < _m; j++)
-//         //         {
-//         //             cout << m[t][i][j];
-//         //         }
-//         //         cout<<endl;
-//         //     }
-//         //     cout<<endl;
-//         // }
-//         // cout<<endl;
-//         // for (int i = 0; i < _n; i++)
-//         // {
-//         //     for (int j = 0; j < _m-1; j++)
-//         //     {
-//         //         cout << wv[i][j];
-//         //     }
-//         //     cout<<endl;
-//         // }
-//         // cout<<endl;
-//         // for (int i = 0; i < _n-1; i++)
-//         // {
-//         //     for (int j = 0; j < _m; j++)
-//         //     {
-//         //         cout << wh[i][j];
-//         //     }
-//         //     cout<<endl;
-//         // }
-//         // cout<<endl;
+    public:
+        void init_pre_flow(Graph g){
+            
+        }
+        void discharge(Vertex u){
+            while (u.excess_flux>0)
+            {
+                
+            }
+        }
+        void relabel(Vertex u){
+
+        }
+        void run(Graph g){
+
+        }
+};
 
 
-//     }
 class Algo
 {
   private:
@@ -224,7 +171,8 @@ class Algo
 int main(){
     Graph g;
     g.loadGraphFromStdin();
-
+    ReLabel algorithm;
+    algorithm.run(g);
 
     
     return 0;

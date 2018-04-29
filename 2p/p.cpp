@@ -29,7 +29,7 @@ class ResidualArc
   public:
     int flux;
     int getCapacity() { 
-        debug("cap "<<_capacity - flux);
+        // debug("cap "<<_capacity - flux);
         return _capacity - flux; }
     ResidualArc *pair;
     Vertex* dest_vertex;
@@ -54,8 +54,9 @@ class Vertex
 
     int excess_flux;
     int height;
-    bool processed;
-    Vertex() : excess_flux(0), height(0) {}
+    bool process;
+    Vertex() : excess_flux(0), height(0), process(true){}
+    Vertex(bool p) : excess_flux(0), height(0), process(p){}
     // Vertex(int l, int c) : _l(l), _c(c), excess_flux(0), height(0) {}
 
     // ~Vertex(){
@@ -84,7 +85,7 @@ class Graph
     Vertex *_target;
     Vertex *vertices;
 
-    Graph() : _source(new Vertex()), _target(new Vertex()) {}
+    Graph() : _source(new Vertex(false)), _target(new Vertex(false)) {}
 
     ~Graph()
     {
@@ -121,9 +122,7 @@ class Graph
                 ResidualArc *s_arc = new ResidualArc(p,getVertex(i,j));
                 ResidualArc *v_pair = new ResidualArc(0,_source,s_arc);
                 _source->addArc(s_arc);
-                getVertex(i,j)->addArc(v_pair);
-                
-                debug(p);
+                getVertex(i,j)->addArc(v_pair);             
             }
         }
         //Get The C's
@@ -137,8 +136,6 @@ class Graph
                 ResidualArc *v_pair = new ResidualArc(c,_target,t_arc);
                 _target->addArc(t_arc);
                 getVertex(i,j)->addArc(v_pair);
-
-                debug(c);
             }
         }
 
@@ -217,9 +214,8 @@ class Graph
         {
             for (int j = 0; j < _c; j++)
             {
-                cout << ((getVertex(i,j)->height>_source->height) ? "C" : "P");
-                if (j < _c - 1)
-                    cout << " ";
+                cout << ((getVertex(i,j)->height>=_source->height) ? "C" : "P");
+                cout << " ";
             }
             cout << endl;
         }
@@ -230,6 +226,7 @@ class ReLabel
 {
   private:
     list<Vertex*> L;
+    list<Vertex*>::iterator l_it;
   public:
     void init_pre_flow(Graph g)
     {
@@ -238,31 +235,33 @@ class ReLabel
         
         for(ResidualArc* arc : g._source->_arcs)
         {
-            debug("b capacity "<<arc->getCapacity());
             int capacity = arc->getCapacity(); //since our capacity keeps changing
-            arc->pair->addFlux(-capacity);
-            arc->addFlux(capacity);
-            debug("after "<<arc->getCapacity()<< " ot "<<arc->pair->getCapacity());
-            g._source->excess_flux -=capacity;
-            arc->dest_vertex->excess_flux += capacity;
+            if (capacity>0)
+            {
+                arc->pair->addFlux(-capacity);
+                arc->addFlux(capacity);
+                g._source->excess_flux -=capacity;
+                arc->dest_vertex->excess_flux += capacity;
+                L.push_front(arc->dest_vertex);
+            }
+
         } 
     }
     void createList(Graph g){
-        for (int i = 0; i < g._l; i++)
-        {
-            for (int j = 0; j < g._c; j++)
-            {
-                //the vertices in Graph are fixed array
-                //source and target not included
-                L.push_back(g.getVertex(i,j));
-            }
-        }
+        // for (int i = 0; i < g._l; i++)
+        // {
+        //     for (int j = 0; j < g._c; j++)
+        //     {
+        //         //the vertices in Graph are fixed array
+        //         //source and target not included
+        //         L.push_back(g.getVertex(i,j));
+        //     }
+        // }
     }
 
 
     void push(Vertex* u,ResidualArc* arc){
-        debug("push ");
-        assert(u->excess_flux>0 && u->height>arc->dest_vertex->height);
+        assert(u->excess_flux>0 && u->height==arc->dest_vertex->height+1);
         
 
 
@@ -272,7 +271,13 @@ class ReLabel
         u->excess_flux-=d;
         arc->dest_vertex->excess_flux+=d;
 
-        debug("push "<<d);
+        if (arc->dest_vertex->process)
+        {
+            L.push_front(arc->dest_vertex);
+            l_it= L.begin();
+        }
+        
+
     }
     void discharge(Vertex* u)
     {
@@ -282,15 +287,13 @@ class ReLabel
         {
             if (v_arcs.size()==0)
             {
-                debug("u "<<u->height);
                 relabel(u);
                 v_arcs = u->_arcs;
             }else
             {
                 ResidualArc* arc = v_arcs.front();
                 v_arcs.pop_front();
-                debug("u h "<<u->height<<"ar h "<<arc->dest_vertex->height);
-                if(arc->getCapacity()>0 && u->height>arc->dest_vertex->height){
+                if(arc->getCapacity()>0 && u->height==arc->dest_vertex->height+1){
                     push(u,arc);
                 }
             }
@@ -318,41 +321,30 @@ class ReLabel
         init_pre_flow(g);
         createList(g);
         
-        list<Vertex*>::iterator l_it= L.begin();
 
+        l_it= L.begin();
         Vertex* u = *(l_it);
         while (l_it!= L.end())
         {
-            debug("list size "<<L.size());
-            int old_height = u->height;
+            l_it=L.erase(l_it);
+            // int old_height = u->height;
             discharge(u);
             //relabel occured
-            if (u->height>old_height)
-            {
-                l_it=L.erase(l_it);
-                L.push_front(u);
-                l_it= L.begin();
-            }
+            // if (u->height>old_height)
+            // {
+
+            // L.push_front(u);
+            // l_it= L.begin();
+            // }
             
-            u = *(++l_it);
+            u = *(l_it);
+
 
         }
 
     }
 };
 
-class Algo
-{
-  private:
-    int _n;
-    int _m;
-    int cp_matrix;
-    int *w_vert;
-    int *w_hor;
-
-  public:
-    int getNrVertices() { return _n; }
-};
 int main()
 {
     Graph g;

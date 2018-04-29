@@ -1,0 +1,891 @@
+desc: (none)
+cmd: ./proj
+time_unit: i
+#-----------
+snapshot=0
+#-----------
+time=0
+mem_heap_B=0
+mem_heap_extra_B=0
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=1
+#-----------
+time=2152621
+mem_heap_B=72704
+mem_heap_extra_B=8
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=2
+#-----------
+time=2614725
+mem_heap_B=109936
+mem_heap_extra_B=17936
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=3
+#-----------
+time=3000371
+mem_heap_B=137392
+mem_heap_extra_B=36240
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=4
+#-----------
+time=3518396
+mem_heap_B=145096
+mem_heap_extra_B=41376
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=5
+#-----------
+time=4158901
+mem_heap_B=145360
+mem_heap_extra_B=41552
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=6
+#-----------
+time=4602226
+mem_heap_B=145600
+mem_heap_extra_B=41712
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=7
+#-----------
+time=4951864
+mem_heap_B=145744
+mem_heap_extra_B=41808
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=8
+#-----------
+time=5504744
+mem_heap_B=146056
+mem_heap_extra_B=42016
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=9
+#-----------
+time=5824795
+mem_heap_B=146200
+mem_heap_extra_B=42112
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=10
+#-----------
+time=6258563
+mem_heap_B=146368
+mem_heap_extra_B=42224
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=11
+#-----------
+time=6591642
+mem_heap_B=146488
+mem_heap_extra_B=42304
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=12
+#-----------
+time=7035714
+mem_heap_B=146632
+mem_heap_extra_B=42400
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=13
+#-----------
+time=7324748
+mem_heap_B=146728
+mem_heap_extra_B=42464
+mem_stacks_B=0
+heap_tree=detailed
+n22: 146728 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 72704 0x4EBA9BE: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.22)
+  n1: 72704 0x400F858: call_init.part.0 (dl-init.c:72)
+   n1: 72704 0x400F969: _dl_init (dl-init.c:30)
+    n0: 72704 0x4000C58: ??? (in /lib/x86_64-linux-gnu/ld-2.24.so)
+ n1: 6248 0x10906D: Graph::loadGraphFromStdin() (p.cpp:112)
+  n0: 6248 0x108DFE: main (p.cpp:346)
+ n1: 4096 0x5732A60: _IO_file_doallocate (filedoalloc.c:101)
+  n1: 4096 0x5740A74: _IO_doallocbuf (genops.c:398)
+   n1: 4096 0x573FAE2: _IO_file_underflow@@GLIBC_2.2.5 (fileops.c:564)
+    n1: 4096 0x5740B30: _IO_default_uflow (genops.c:413)
+     n1: 4096 0x573B51E: getc (getc.c:38)
+      n1: 4096 0x4F1830B: __gnu_cxx::stdio_sync_filebuf<char, std::char_traits<char> >::underflow() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.22)
+       n1: 4096 0x4F25367: std::istream::sentry::sentry(std::istream&, bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.22)
+        n1: 4096 0x4F2552D: std::istream::operator>>(int&) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.22)
+         n1: 4096 0x10902E: Graph::loadGraphFromStdin() (p.cpp:104)
+          n0: 4096 0x108DFE: main (p.cpp:346)
+ n1: 3744 0x1098C8: ReLabel::run(Graph) (new_allocator.h:104)
+  n0: 3744 0x108E45: main (p.cpp:348)
+ n1: 3744 0x109140: Graph::loadGraphFromStdin() (p.cpp:122)
+  n0: 3744 0x108DFE: main (p.cpp:346)
+ n1: 3744 0x10916A: Graph::loadGraphFromStdin() (new_allocator.h:104)
+  n0: 3744 0x108DFE: main (p.cpp:346)
+ n1: 3744 0x1091A3: Graph::loadGraphFromStdin() (new_allocator.h:104)
+  n0: 3744 0x108DFE: main (p.cpp:346)
+ n1: 3744 0x109230: Graph::loadGraphFromStdin() (p.cpp:134)
+  n0: 3744 0x108DFE: main (p.cpp:346)
+ n1: 3744 0x109256: Graph::loadGraphFromStdin() (p.cpp:135)
+  n0: 3744 0x108DFE: main (p.cpp:346)
+ n1: 3744 0x109282: Graph::loadGraphFromStdin() (new_allocator.h:104)
+  n0: 3744 0x108DFE: main (p.cpp:346)
+ n1: 3744 0x1092BB: Graph::loadGraphFromStdin() (new_allocator.h:104)
+  n0: 3744 0x108DFE: main (p.cpp:346)
+ n1: 3744 0x109118: Graph::loadGraphFromStdin() (p.cpp:121)
+  n0: 3744 0x108DFE: main (p.cpp:346)
+ n1: 3456 0x1094E2: Graph::loadGraphFromStdin() (p.cpp:160)
+  n0: 3456 0x108DFE: main (p.cpp:346)
+ n1: 3456 0x109523: Graph::loadGraphFromStdin() (new_allocator.h:104)
+  n0: 3456 0x108DFE: main (p.cpp:346)
+ n1: 3456 0x10955C: Graph::loadGraphFromStdin() (new_allocator.h:104)
+  n0: 3456 0x108DFE: main (p.cpp:346)
+ n1: 3456 0x1094A1: Graph::loadGraphFromStdin() (p.cpp:159)
+  n0: 3456 0x108DFE: main (p.cpp:346)
+ n1: 3432 0x109345: Graph::loadGraphFromStdin() (p.cpp:147)
+  n0: 3432 0x108DFE: main (p.cpp:346)
+ n1: 3432 0x109389: Graph::loadGraphFromStdin() (p.cpp:148)
+  n0: 3432 0x108DFE: main (p.cpp:346)
+ n1: 3432 0x1093CE: Graph::loadGraphFromStdin() (new_allocator.h:104)
+  n0: 3432 0x108DFE: main (p.cpp:346)
+ n1: 3432 0x109404: Graph::loadGraphFromStdin() (new_allocator.h:104)
+  n0: 3432 0x108DFE: main (p.cpp:346)
+ n1: 2208 0x109BC1: ReLabel::run(Graph) (new_allocator.h:104)
+  n0: 2208 0x108E45: main (p.cpp:348)
+ n0: 224 in 4 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=14
+#-----------
+time=7824390
+mem_heap_B=146776
+mem_heap_extra_B=42496
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=15
+#-----------
+time=8323986
+mem_heap_B=146872
+mem_heap_extra_B=42560
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=16
+#-----------
+time=8657096
+mem_heap_B=146968
+mem_heap_extra_B=42624
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=17
+#-----------
+time=9101285
+mem_heap_B=147088
+mem_heap_extra_B=42704
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=18
+#-----------
+time=9434552
+mem_heap_B=147208
+mem_heap_extra_B=42784
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=19
+#-----------
+time=9862751
+mem_heap_B=147880
+mem_heap_extra_B=43232
+mem_stacks_B=0
+heap_tree=detailed
+n22: 147880 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 72704 0x4EBA9BE: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.22)
+  n1: 72704 0x400F858: call_init.part.0 (dl-init.c:72)
+   n1: 72704 0x400F969: _dl_init (dl-init.c:30)
+    n0: 72704 0x4000C58: ??? (in /lib/x86_64-linux-gnu/ld-2.24.so)
+ n1: 6248 0x10906D: Graph::loadGraphFromStdin() (p.cpp:112)
+  n0: 6248 0x108DFE: main (p.cpp:346)
+ n1: 4096 0x5732A60: _IO_file_doallocate (filedoalloc.c:101)
+  n1: 4096 0x5740A74: _IO_doallocbuf (genops.c:398)
+   n1: 4096 0x573FAE2: _IO_file_underflow@@GLIBC_2.2.5 (fileops.c:564)
+    n1: 4096 0x5740B30: _IO_default_uflow (genops.c:413)
+     n1: 4096 0x573B51E: getc (getc.c:38)
+      n1: 4096 0x4F1830B: __gnu_cxx::stdio_sync_filebuf<char, std::char_traits<char> >::underflow() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.22)
+       n1: 4096 0x4F25367: std::istream::sentry::sentry(std::istream&, bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.22)
+        n1: 4096 0x4F2552D: std::istream::operator>>(int&) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.22)
+         n1: 4096 0x10902E: Graph::loadGraphFromStdin() (p.cpp:104)
+          n0: 4096 0x108DFE: main (p.cpp:346)
+ n1: 3744 0x1098C8: ReLabel::run(Graph) (new_allocator.h:104)
+  n0: 3744 0x108E45: main (p.cpp:348)
+ n1: 3744 0x109140: Graph::loadGraphFromStdin() (p.cpp:122)
+  n0: 3744 0x108DFE: main (p.cpp:346)
+ n1: 3744 0x10916A: Graph::loadGraphFromStdin() (new_allocator.h:104)
+  n0: 3744 0x108DFE: main (p.cpp:346)
+ n1: 3744 0x1091A3: Graph::loadGraphFromStdin() (new_allocator.h:104)
+  n0: 3744 0x108DFE: main (p.cpp:346)
+ n1: 3744 0x109230: Graph::loadGraphFromStdin() (p.cpp:134)
+  n0: 3744 0x108DFE: main (p.cpp:346)
+ n1: 3744 0x109256: Graph::loadGraphFromStdin() (p.cpp:135)
+  n0: 3744 0x108DFE: main (p.cpp:346)
+ n1: 3744 0x109282: Graph::loadGraphFromStdin() (new_allocator.h:104)
+  n0: 3744 0x108DFE: main (p.cpp:346)
+ n1: 3744 0x1092BB: Graph::loadGraphFromStdin() (new_allocator.h:104)
+  n0: 3744 0x108DFE: main (p.cpp:346)
+ n1: 3744 0x109118: Graph::loadGraphFromStdin() (p.cpp:121)
+  n0: 3744 0x108DFE: main (p.cpp:346)
+ n1: 3456 0x1094E2: Graph::loadGraphFromStdin() (p.cpp:160)
+  n0: 3456 0x108DFE: main (p.cpp:346)
+ n1: 3456 0x109523: Graph::loadGraphFromStdin() (new_allocator.h:104)
+  n0: 3456 0x108DFE: main (p.cpp:346)
+ n1: 3456 0x10955C: Graph::loadGraphFromStdin() (new_allocator.h:104)
+  n0: 3456 0x108DFE: main (p.cpp:346)
+ n1: 3456 0x1094A1: Graph::loadGraphFromStdin() (p.cpp:159)
+  n0: 3456 0x108DFE: main (p.cpp:346)
+ n1: 3432 0x109345: Graph::loadGraphFromStdin() (p.cpp:147)
+  n0: 3432 0x108DFE: main (p.cpp:346)
+ n1: 3432 0x109389: Graph::loadGraphFromStdin() (p.cpp:148)
+  n0: 3432 0x108DFE: main (p.cpp:346)
+ n1: 3432 0x1093CE: Graph::loadGraphFromStdin() (new_allocator.h:104)
+  n0: 3432 0x108DFE: main (p.cpp:346)
+ n1: 3432 0x109404: Graph::loadGraphFromStdin() (new_allocator.h:104)
+  n0: 3432 0x108DFE: main (p.cpp:346)
+ n1: 3360 0x109BC1: ReLabel::run(Graph) (new_allocator.h:104)
+  n0: 3360 0x108E45: main (p.cpp:348)
+ n0: 224 in 4 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=20
+#-----------
+time=10362607
+mem_heap_B=148072
+mem_heap_extra_B=43360
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=21
+#-----------
+time=11029121
+mem_heap_B=148408
+mem_heap_extra_B=43584
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=22
+#-----------
+time=11528987
+mem_heap_B=148576
+mem_heap_extra_B=43696
+mem_stacks_B=0
+heap_tree=detailed
+n22: 148576 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 72704 0x4EBA9BE: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.22)
+  n1: 72704 0x400F858: call_init.part.0 (dl-init.c:72)
+   n1: 72704 0x400F969: _dl_init (dl-init.c:30)
+    n0: 72704 0x4000C58: ??? (in /lib/x86_64-linux-gnu/ld-2.24.so)
+ n1: 6248 0x10906D: Graph::loadGraphFromStdin() (p.cpp:112)
+  n0: 6248 0x108DFE: main (p.cpp:346)
+ n1: 4104 0x109BC1: ReLabel::run(Graph) (new_allocator.h:104)
+  n0: 4104 0x108E45: main (p.cpp:348)
+ n1: 4096 0x5732A60: _IO_file_doallocate (filedoalloc.c:101)
+  n1: 4096 0x5740A74: _IO_doallocbuf (genops.c:398)
+   n1: 4096 0x573FAE2: _IO_file_underflow@@GLIBC_2.2.5 (fileops.c:564)
+    n1: 4096 0x5740B30: _IO_default_uflow (genops.c:413)
+     n1: 4096 0x573B51E: getc (getc.c:38)
+      n1: 4096 0x4F1830B: __gnu_cxx::stdio_sync_filebuf<char, std::char_traits<char> >::underflow() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.22)
+       n1: 4096 0x4F25367: std::istream::sentry::sentry(std::istream&, bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.22)
+        n1: 4096 0x4F2552D: std::istream::operator>>(int&) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.22)
+         n1: 4096 0x10902E: Graph::loadGraphFromStdin() (p.cpp:104)
+          n0: 4096 0x108DFE: main (p.cpp:346)
+ n1: 3744 0x109140: Graph::loadGraphFromStdin() (p.cpp:122)
+  n0: 3744 0x108DFE: main (p.cpp:346)
+ n1: 3744 0x10916A: Graph::loadGraphFromStdin() (new_allocator.h:104)
+  n0: 3744 0x108DFE: main (p.cpp:346)
+ n1: 3744 0x1091A3: Graph::loadGraphFromStdin() (new_allocator.h:104)
+  n0: 3744 0x108DFE: main (p.cpp:346)
+ n1: 3744 0x109230: Graph::loadGraphFromStdin() (p.cpp:134)
+  n0: 3744 0x108DFE: main (p.cpp:346)
+ n1: 3744 0x109256: Graph::loadGraphFromStdin() (p.cpp:135)
+  n0: 3744 0x108DFE: main (p.cpp:346)
+ n1: 3744 0x109282: Graph::loadGraphFromStdin() (new_allocator.h:104)
+  n0: 3744 0x108DFE: main (p.cpp:346)
+ n1: 3744 0x1092BB: Graph::loadGraphFromStdin() (new_allocator.h:104)
+  n0: 3744 0x108DFE: main (p.cpp:346)
+ n1: 3744 0x109118: Graph::loadGraphFromStdin() (p.cpp:121)
+  n0: 3744 0x108DFE: main (p.cpp:346)
+ n1: 3744 0x1098C8: ReLabel::run(Graph) (new_allocator.h:104)
+  n0: 3744 0x108E45: main (p.cpp:348)
+ n1: 3456 0x109523: Graph::loadGraphFromStdin() (new_allocator.h:104)
+  n0: 3456 0x108DFE: main (p.cpp:346)
+ n1: 3456 0x10955C: Graph::loadGraphFromStdin() (new_allocator.h:104)
+  n0: 3456 0x108DFE: main (p.cpp:346)
+ n1: 3456 0x1094A1: Graph::loadGraphFromStdin() (p.cpp:159)
+  n0: 3456 0x108DFE: main (p.cpp:346)
+ n1: 3456 0x1094E2: Graph::loadGraphFromStdin() (p.cpp:160)
+  n0: 3456 0x108DFE: main (p.cpp:346)
+ n1: 3432 0x109345: Graph::loadGraphFromStdin() (p.cpp:147)
+  n0: 3432 0x108DFE: main (p.cpp:346)
+ n1: 3432 0x109389: Graph::loadGraphFromStdin() (p.cpp:148)
+  n0: 3432 0x108DFE: main (p.cpp:346)
+ n1: 3432 0x1093CE: Graph::loadGraphFromStdin() (new_allocator.h:104)
+  n0: 3432 0x108DFE: main (p.cpp:346)
+ n1: 3432 0x109404: Graph::loadGraphFromStdin() (new_allocator.h:104)
+  n0: 3432 0x108DFE: main (p.cpp:346)
+ n0: 176 in 4 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=23
+#-----------
+time=12250841
+mem_heap_B=148792
+mem_heap_extra_B=43840
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=24
+#-----------
+time=12695004
+mem_heap_B=148840
+mem_heap_extra_B=43872
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=25
+#-----------
+time=13423001
+mem_heap_B=149704
+mem_heap_extra_B=44448
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=26
+#-----------
+time=13867161
+mem_heap_B=150016
+mem_heap_extra_B=44656
+mem_stacks_B=0
+heap_tree=detailed
+n22: 150016 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 72704 0x4EBA9BE: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.22)
+  n1: 72704 0x400F858: call_init.part.0 (dl-init.c:72)
+   n1: 72704 0x400F969: _dl_init (dl-init.c:30)
+    n0: 72704 0x4000C58: ??? (in /lib/x86_64-linux-gnu/ld-2.24.so)
+ n1: 6248 0x10906D: Graph::loadGraphFromStdin() (p.cpp:112)
+  n0: 6248 0x108DFE: main (p.cpp:346)
+ n1: 5568 0x109BC1: ReLabel::run(Graph) (new_allocator.h:104)
+  n0: 5568 0x108E45: main (p.cpp:348)
+ n1: 4096 0x5732A60: _IO_file_doallocate (filedoalloc.c:101)
+  n1: 4096 0x5740A74: _IO_doallocbuf (genops.c:398)
+   n1: 4096 0x573FAE2: _IO_file_underflow@@GLIBC_2.2.5 (fileops.c:564)
+    n1: 4096 0x5740B30: _IO_default_uflow (genops.c:413)
+     n1: 4096 0x573B51E: getc (getc.c:38)
+      n1: 4096 0x4F1830B: __gnu_cxx::stdio_sync_filebuf<char, std::char_traits<char> >::underflow() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.22)
+       n1: 4096 0x4F25367: std::istream::sentry::sentry(std::istream&, bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.22)
+        n1: 4096 0x4F2552D: std::istream::operator>>(int&) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.22)
+         n1: 4096 0x10902E: Graph::loadGraphFromStdin() (p.cpp:104)
+          n0: 4096 0x108DFE: main (p.cpp:346)
+ n1: 3744 0x109140: Graph::loadGraphFromStdin() (p.cpp:122)
+  n0: 3744 0x108DFE: main (p.cpp:346)
+ n1: 3744 0x10916A: Graph::loadGraphFromStdin() (new_allocator.h:104)
+  n0: 3744 0x108DFE: main (p.cpp:346)
+ n1: 3744 0x1091A3: Graph::loadGraphFromStdin() (new_allocator.h:104)
+  n0: 3744 0x108DFE: main (p.cpp:346)
+ n1: 3744 0x109230: Graph::loadGraphFromStdin() (p.cpp:134)
+  n0: 3744 0x108DFE: main (p.cpp:346)
+ n1: 3744 0x109256: Graph::loadGraphFromStdin() (p.cpp:135)
+  n0: 3744 0x108DFE: main (p.cpp:346)
+ n1: 3744 0x109282: Graph::loadGraphFromStdin() (new_allocator.h:104)
+  n0: 3744 0x108DFE: main (p.cpp:346)
+ n1: 3744 0x1092BB: Graph::loadGraphFromStdin() (new_allocator.h:104)
+  n0: 3744 0x108DFE: main (p.cpp:346)
+ n1: 3744 0x109118: Graph::loadGraphFromStdin() (p.cpp:121)
+  n0: 3744 0x108DFE: main (p.cpp:346)
+ n1: 3744 0x1098C8: ReLabel::run(Graph) (new_allocator.h:104)
+  n0: 3744 0x108E45: main (p.cpp:348)
+ n1: 3456 0x109523: Graph::loadGraphFromStdin() (new_allocator.h:104)
+  n0: 3456 0x108DFE: main (p.cpp:346)
+ n1: 3456 0x10955C: Graph::loadGraphFromStdin() (new_allocator.h:104)
+  n0: 3456 0x108DFE: main (p.cpp:346)
+ n1: 3456 0x1094A1: Graph::loadGraphFromStdin() (p.cpp:159)
+  n0: 3456 0x108DFE: main (p.cpp:346)
+ n1: 3456 0x1094E2: Graph::loadGraphFromStdin() (p.cpp:160)
+  n0: 3456 0x108DFE: main (p.cpp:346)
+ n1: 3432 0x109345: Graph::loadGraphFromStdin() (p.cpp:147)
+  n0: 3432 0x108DFE: main (p.cpp:346)
+ n1: 3432 0x109389: Graph::loadGraphFromStdin() (p.cpp:148)
+  n0: 3432 0x108DFE: main (p.cpp:346)
+ n1: 3432 0x1093CE: Graph::loadGraphFromStdin() (new_allocator.h:104)
+  n0: 3432 0x108DFE: main (p.cpp:346)
+ n1: 3432 0x109404: Graph::loadGraphFromStdin() (new_allocator.h:104)
+  n0: 3432 0x108DFE: main (p.cpp:346)
+ n0: 152 in 4 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=27
+#-----------
+time=14560325
+mem_heap_B=150328
+mem_heap_extra_B=44864
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=28
+#-----------
+time=15004480
+mem_heap_B=150400
+mem_heap_extra_B=44912
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=29
+#-----------
+time=15337585
+mem_heap_B=150976
+mem_heap_extra_B=45296
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=30
+#-----------
+time=15779708
+mem_heap_B=151384
+mem_heap_extra_B=45568
+mem_stacks_B=0
+heap_tree=detailed
+n22: 151384 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 72704 0x4EBA9BE: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.22)
+  n1: 72704 0x400F858: call_init.part.0 (dl-init.c:72)
+   n1: 72704 0x400F969: _dl_init (dl-init.c:30)
+    n0: 72704 0x4000C58: ??? (in /lib/x86_64-linux-gnu/ld-2.24.so)
+ n1: 6864 0x109BC1: ReLabel::run(Graph) (new_allocator.h:104)
+  n0: 6864 0x108E45: main (p.cpp:348)
+ n1: 6248 0x10906D: Graph::loadGraphFromStdin() (p.cpp:112)
+  n0: 6248 0x108DFE: main (p.cpp:346)
+ n1: 4096 0x5732A60: _IO_file_doallocate (filedoalloc.c:101)
+  n1: 4096 0x5740A74: _IO_doallocbuf (genops.c:398)
+   n1: 4096 0x573FAE2: _IO_file_underflow@@GLIBC_2.2.5 (fileops.c:564)
+    n1: 4096 0x5740B30: _IO_default_uflow (genops.c:413)
+     n1: 4096 0x573B51E: getc (getc.c:38)
+      n1: 4096 0x4F1830B: __gnu_cxx::stdio_sync_filebuf<char, std::char_traits<char> >::underflow() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.22)
+       n1: 4096 0x4F25367: std::istream::sentry::sentry(std::istream&, bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.22)
+        n1: 4096 0x4F2552D: std::istream::operator>>(int&) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.22)
+         n1: 4096 0x10902E: Graph::loadGraphFromStdin() (p.cpp:104)
+          n0: 4096 0x108DFE: main (p.cpp:346)
+ n1: 3744 0x109140: Graph::loadGraphFromStdin() (p.cpp:122)
+  n0: 3744 0x108DFE: main (p.cpp:346)
+ n1: 3744 0x10916A: Graph::loadGraphFromStdin() (new_allocator.h:104)
+  n0: 3744 0x108DFE: main (p.cpp:346)
+ n1: 3744 0x1091A3: Graph::loadGraphFromStdin() (new_allocator.h:104)
+  n0: 3744 0x108DFE: main (p.cpp:346)
+ n1: 3744 0x109230: Graph::loadGraphFromStdin() (p.cpp:134)
+  n0: 3744 0x108DFE: main (p.cpp:346)
+ n1: 3744 0x109256: Graph::loadGraphFromStdin() (p.cpp:135)
+  n0: 3744 0x108DFE: main (p.cpp:346)
+ n1: 3744 0x109282: Graph::loadGraphFromStdin() (new_allocator.h:104)
+  n0: 3744 0x108DFE: main (p.cpp:346)
+ n1: 3744 0x1092BB: Graph::loadGraphFromStdin() (new_allocator.h:104)
+  n0: 3744 0x108DFE: main (p.cpp:346)
+ n1: 3744 0x109118: Graph::loadGraphFromStdin() (p.cpp:121)
+  n0: 3744 0x108DFE: main (p.cpp:346)
+ n1: 3744 0x1098C8: ReLabel::run(Graph) (new_allocator.h:104)
+  n0: 3744 0x108E45: main (p.cpp:348)
+ n1: 3456 0x109523: Graph::loadGraphFromStdin() (new_allocator.h:104)
+  n0: 3456 0x108DFE: main (p.cpp:346)
+ n1: 3456 0x10955C: Graph::loadGraphFromStdin() (new_allocator.h:104)
+  n0: 3456 0x108DFE: main (p.cpp:346)
+ n1: 3456 0x1094A1: Graph::loadGraphFromStdin() (p.cpp:159)
+  n0: 3456 0x108DFE: main (p.cpp:346)
+ n1: 3456 0x1094E2: Graph::loadGraphFromStdin() (p.cpp:160)
+  n0: 3456 0x108DFE: main (p.cpp:346)
+ n1: 3432 0x109345: Graph::loadGraphFromStdin() (p.cpp:147)
+  n0: 3432 0x108DFE: main (p.cpp:346)
+ n1: 3432 0x109389: Graph::loadGraphFromStdin() (p.cpp:148)
+  n0: 3432 0x108DFE: main (p.cpp:346)
+ n1: 3432 0x1093CE: Graph::loadGraphFromStdin() (new_allocator.h:104)
+  n0: 3432 0x108DFE: main (p.cpp:346)
+ n1: 3432 0x109404: Graph::loadGraphFromStdin() (new_allocator.h:104)
+  n0: 3432 0x108DFE: main (p.cpp:346)
+ n0: 224 in 4 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=31
+#-----------
+time=16223885
+mem_heap_B=151648
+mem_heap_extra_B=45744
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=32
+#-----------
+time=16668014
+mem_heap_B=151912
+mem_heap_extra_B=45920
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=33
+#-----------
+time=17112184
+mem_heap_B=152032
+mem_heap_extra_B=46000
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=34
+#-----------
+time=17445575
+mem_heap_B=152248
+mem_heap_extra_B=46144
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=35
+#-----------
+time=18085384
+mem_heap_B=152752
+mem_heap_extra_B=46480
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=36
+#-----------
+time=18752153
+mem_heap_B=153376
+mem_heap_extra_B=46896
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=37
+#-----------
+time=19252193
+mem_heap_B=153520
+mem_heap_extra_B=46992
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=38
+#-----------
+time=19770432
+mem_heap_B=153760
+mem_heap_extra_B=47152
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=39
+#-----------
+time=20103816
+mem_heap_B=153928
+mem_heap_extra_B=47264
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=40
+#-----------
+time=20603828
+mem_heap_B=154504
+mem_heap_extra_B=47648
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=41
+#-----------
+time=21103845
+mem_heap_B=154888
+mem_heap_extra_B=47904
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=42
+#-----------
+time=21471006
+mem_heap_B=155104
+mem_heap_extra_B=48048
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=43
+#-----------
+time=22137659
+mem_heap_B=155416
+mem_heap_extra_B=48256
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=44
+#-----------
+time=22471010
+mem_heap_B=155584
+mem_heap_extra_B=48368
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=45
+#-----------
+time=23152615
+mem_heap_B=156232
+mem_heap_extra_B=48800
+mem_stacks_B=0
+heap_tree=detailed
+n22: 156232 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 72704 0x4EBA9BE: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.22)
+  n1: 72704 0x400F858: call_init.part.0 (dl-init.c:72)
+   n1: 72704 0x400F969: _dl_init (dl-init.c:30)
+    n0: 72704 0x4000C58: ??? (in /lib/x86_64-linux-gnu/ld-2.24.so)
+ n1: 11712 0x109BC1: ReLabel::run(Graph) (new_allocator.h:104)
+  n0: 11712 0x108E45: main (p.cpp:348)
+ n1: 6248 0x10906D: Graph::loadGraphFromStdin() (p.cpp:112)
+  n0: 6248 0x108DFE: main (p.cpp:346)
+ n1: 4096 0x5732A60: _IO_file_doallocate (filedoalloc.c:101)
+  n1: 4096 0x5740A74: _IO_doallocbuf (genops.c:398)
+   n1: 4096 0x573FAE2: _IO_file_underflow@@GLIBC_2.2.5 (fileops.c:564)
+    n1: 4096 0x5740B30: _IO_default_uflow (genops.c:413)
+     n1: 4096 0x573B51E: getc (getc.c:38)
+      n1: 4096 0x4F1830B: __gnu_cxx::stdio_sync_filebuf<char, std::char_traits<char> >::underflow() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.22)
+       n1: 4096 0x4F25367: std::istream::sentry::sentry(std::istream&, bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.22)
+        n1: 4096 0x4F2552D: std::istream::operator>>(int&) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.22)
+         n1: 4096 0x10902E: Graph::loadGraphFromStdin() (p.cpp:104)
+          n0: 4096 0x108DFE: main (p.cpp:346)
+ n1: 3744 0x109140: Graph::loadGraphFromStdin() (p.cpp:122)
+  n0: 3744 0x108DFE: main (p.cpp:346)
+ n1: 3744 0x10916A: Graph::loadGraphFromStdin() (new_allocator.h:104)
+  n0: 3744 0x108DFE: main (p.cpp:346)
+ n1: 3744 0x1091A3: Graph::loadGraphFromStdin() (new_allocator.h:104)
+  n0: 3744 0x108DFE: main (p.cpp:346)
+ n1: 3744 0x109230: Graph::loadGraphFromStdin() (p.cpp:134)
+  n0: 3744 0x108DFE: main (p.cpp:346)
+ n1: 3744 0x109256: Graph::loadGraphFromStdin() (p.cpp:135)
+  n0: 3744 0x108DFE: main (p.cpp:346)
+ n1: 3744 0x109282: Graph::loadGraphFromStdin() (new_allocator.h:104)
+  n0: 3744 0x108DFE: main (p.cpp:346)
+ n1: 3744 0x1092BB: Graph::loadGraphFromStdin() (new_allocator.h:104)
+  n0: 3744 0x108DFE: main (p.cpp:346)
+ n1: 3744 0x109118: Graph::loadGraphFromStdin() (p.cpp:121)
+  n0: 3744 0x108DFE: main (p.cpp:346)
+ n1: 3744 0x1098C8: ReLabel::run(Graph) (new_allocator.h:104)
+  n0: 3744 0x108E45: main (p.cpp:348)
+ n1: 3456 0x109523: Graph::loadGraphFromStdin() (new_allocator.h:104)
+  n0: 3456 0x108DFE: main (p.cpp:346)
+ n1: 3456 0x10955C: Graph::loadGraphFromStdin() (new_allocator.h:104)
+  n0: 3456 0x108DFE: main (p.cpp:346)
+ n1: 3456 0x1094A1: Graph::loadGraphFromStdin() (p.cpp:159)
+  n0: 3456 0x108DFE: main (p.cpp:346)
+ n1: 3456 0x1094E2: Graph::loadGraphFromStdin() (p.cpp:160)
+  n0: 3456 0x108DFE: main (p.cpp:346)
+ n1: 3432 0x109345: Graph::loadGraphFromStdin() (p.cpp:147)
+  n0: 3432 0x108DFE: main (p.cpp:346)
+ n1: 3432 0x109389: Graph::loadGraphFromStdin() (p.cpp:148)
+  n0: 3432 0x108DFE: main (p.cpp:346)
+ n1: 3432 0x1093CE: Graph::loadGraphFromStdin() (new_allocator.h:104)
+  n0: 3432 0x108DFE: main (p.cpp:346)
+ n1: 3432 0x109404: Graph::loadGraphFromStdin() (new_allocator.h:104)
+  n0: 3432 0x108DFE: main (p.cpp:346)
+ n0: 224 in 4 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=46
+#-----------
+time=23485984
+mem_heap_B=156496
+mem_heap_extra_B=48976
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=47
+#-----------
+time=23986022
+mem_heap_B=156736
+mem_heap_extra_B=49136
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=48
+#-----------
+time=24319403
+mem_heap_B=157024
+mem_heap_extra_B=49328
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=49
+#-----------
+time=24986065
+mem_heap_B=157264
+mem_heap_extra_B=49488
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=50
+#-----------
+time=25275125
+mem_heap_B=157288
+mem_heap_extra_B=49504
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=51
+#-----------
+time=25402830
+mem_heap_B=157480
+mem_heap_extra_B=49632
+mem_stacks_B=0
+heap_tree=detailed
+n22: 157480 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 72704 0x4EBA9BE: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.22)
+  n1: 72704 0x400F858: call_init.part.0 (dl-init.c:72)
+   n1: 72704 0x400F969: _dl_init (dl-init.c:30)
+    n0: 72704 0x4000C58: ??? (in /lib/x86_64-linux-gnu/ld-2.24.so)
+ n1: 12984 0x109BC1: ReLabel::run(Graph) (new_allocator.h:104)
+  n0: 12984 0x108E45: main (p.cpp:348)
+ n1: 6248 0x10906D: Graph::loadGraphFromStdin() (p.cpp:112)
+  n0: 6248 0x108DFE: main (p.cpp:346)
+ n1: 4096 0x5732A60: _IO_file_doallocate (filedoalloc.c:101)
+  n1: 4096 0x5740A74: _IO_doallocbuf (genops.c:398)
+   n1: 4096 0x573FAE2: _IO_file_underflow@@GLIBC_2.2.5 (fileops.c:564)
+    n1: 4096 0x5740B30: _IO_default_uflow (genops.c:413)
+     n1: 4096 0x573B51E: getc (getc.c:38)
+      n1: 4096 0x4F1830B: __gnu_cxx::stdio_sync_filebuf<char, std::char_traits<char> >::underflow() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.22)
+       n1: 4096 0x4F25367: std::istream::sentry::sentry(std::istream&, bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.22)
+        n1: 4096 0x4F2552D: std::istream::operator>>(int&) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.22)
+         n1: 4096 0x10902E: Graph::loadGraphFromStdin() (p.cpp:104)
+          n0: 4096 0x108DFE: main (p.cpp:346)
+ n1: 3744 0x109140: Graph::loadGraphFromStdin() (p.cpp:122)
+  n0: 3744 0x108DFE: main (p.cpp:346)
+ n1: 3744 0x10916A: Graph::loadGraphFromStdin() (new_allocator.h:104)
+  n0: 3744 0x108DFE: main (p.cpp:346)
+ n1: 3744 0x1091A3: Graph::loadGraphFromStdin() (new_allocator.h:104)
+  n0: 3744 0x108DFE: main (p.cpp:346)
+ n1: 3744 0x109230: Graph::loadGraphFromStdin() (p.cpp:134)
+  n0: 3744 0x108DFE: main (p.cpp:346)
+ n1: 3744 0x109256: Graph::loadGraphFromStdin() (p.cpp:135)
+  n0: 3744 0x108DFE: main (p.cpp:346)
+ n1: 3744 0x109282: Graph::loadGraphFromStdin() (new_allocator.h:104)
+  n0: 3744 0x108DFE: main (p.cpp:346)
+ n1: 3744 0x1092BB: Graph::loadGraphFromStdin() (new_allocator.h:104)
+  n0: 3744 0x108DFE: main (p.cpp:346)
+ n1: 3744 0x109118: Graph::loadGraphFromStdin() (p.cpp:121)
+  n0: 3744 0x108DFE: main (p.cpp:346)
+ n1: 3744 0x1098C8: ReLabel::run(Graph) (new_allocator.h:104)
+  n0: 3744 0x108E45: main (p.cpp:348)
+ n1: 3456 0x109523: Graph::loadGraphFromStdin() (new_allocator.h:104)
+  n0: 3456 0x108DFE: main (p.cpp:346)
+ n1: 3456 0x10955C: Graph::loadGraphFromStdin() (new_allocator.h:104)
+  n0: 3456 0x108DFE: main (p.cpp:346)
+ n1: 3456 0x1094A1: Graph::loadGraphFromStdin() (p.cpp:159)
+  n0: 3456 0x108DFE: main (p.cpp:346)
+ n1: 3456 0x1094E2: Graph::loadGraphFromStdin() (p.cpp:160)
+  n0: 3456 0x108DFE: main (p.cpp:346)
+ n1: 3432 0x109345: Graph::loadGraphFromStdin() (p.cpp:147)
+  n0: 3432 0x108DFE: main (p.cpp:346)
+ n1: 3432 0x109389: Graph::loadGraphFromStdin() (p.cpp:148)
+  n0: 3432 0x108DFE: main (p.cpp:346)
+ n1: 3432 0x1093CE: Graph::loadGraphFromStdin() (new_allocator.h:104)
+  n0: 3432 0x108DFE: main (p.cpp:346)
+ n1: 3432 0x109404: Graph::loadGraphFromStdin() (new_allocator.h:104)
+  n0: 3432 0x108DFE: main (p.cpp:346)
+ n0: 200 in 4 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=52
+#-----------
+time=25691892
+mem_heap_B=157912
+mem_heap_extra_B=49920
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=53
+#-----------
+time=25980930
+mem_heap_B=158152
+mem_heap_extra_B=50080
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=54
+#-----------
+time=26269979
+mem_heap_B=158416
+mem_heap_extra_B=50256
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=55
+#-----------
+time=26559026
+mem_heap_B=158584
+mem_heap_extra_B=50368
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=56
+#-----------
+time=26784018
+mem_heap_B=158728
+mem_heap_extra_B=50464
+mem_stacks_B=0
+heap_tree=peak
+n22: 158728 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 72704 0x4EBA9BE: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.22)
+  n1: 72704 0x400F858: call_init.part.0 (dl-init.c:72)
+   n1: 72704 0x400F969: _dl_init (dl-init.c:30)
+    n0: 72704 0x4000C58: ??? (in /lib/x86_64-linux-gnu/ld-2.24.so)
+ n1: 14208 0x109BC1: ReLabel::run(Graph) (new_allocator.h:104)
+  n0: 14208 0x108E45: main (p.cpp:348)
+ n1: 6248 0x10906D: Graph::loadGraphFromStdin() (p.cpp:112)
+  n0: 6248 0x108DFE: main (p.cpp:346)
+ n1: 4096 0x5732A60: _IO_file_doallocate (filedoalloc.c:101)
+  n1: 4096 0x5740A74: _IO_doallocbuf (genops.c:398)
+   n1: 4096 0x573FAE2: _IO_file_underflow@@GLIBC_2.2.5 (fileops.c:564)
+    n1: 4096 0x5740B30: _IO_default_uflow (genops.c:413)
+     n1: 4096 0x573B51E: getc (getc.c:38)
+      n1: 4096 0x4F1830B: __gnu_cxx::stdio_sync_filebuf<char, std::char_traits<char> >::underflow() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.22)
+       n1: 4096 0x4F25367: std::istream::sentry::sentry(std::istream&, bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.22)
+        n1: 4096 0x4F2552D: std::istream::operator>>(int&) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.22)
+         n1: 4096 0x10902E: Graph::loadGraphFromStdin() (p.cpp:104)
+          n0: 4096 0x108DFE: main (p.cpp:346)
+ n1: 3744 0x109140: Graph::loadGraphFromStdin() (p.cpp:122)
+  n0: 3744 0x108DFE: main (p.cpp:346)
+ n1: 3744 0x10916A: Graph::loadGraphFromStdin() (new_allocator.h:104)
+  n0: 3744 0x108DFE: main (p.cpp:346)
+ n1: 3744 0x1091A3: Graph::loadGraphFromStdin() (new_allocator.h:104)
+  n0: 3744 0x108DFE: main (p.cpp:346)
+ n1: 3744 0x109230: Graph::loadGraphFromStdin() (p.cpp:134)
+  n0: 3744 0x108DFE: main (p.cpp:346)
+ n1: 3744 0x109256: Graph::loadGraphFromStdin() (p.cpp:135)
+  n0: 3744 0x108DFE: main (p.cpp:346)
+ n1: 3744 0x109282: Graph::loadGraphFromStdin() (new_allocator.h:104)
+  n0: 3744 0x108DFE: main (p.cpp:346)
+ n1: 3744 0x1092BB: Graph::loadGraphFromStdin() (new_allocator.h:104)
+  n0: 3744 0x108DFE: main (p.cpp:346)
+ n1: 3744 0x109118: Graph::loadGraphFromStdin() (p.cpp:121)
+  n0: 3744 0x108DFE: main (p.cpp:346)
+ n1: 3744 0x1098C8: ReLabel::run(Graph) (new_allocator.h:104)
+  n0: 3744 0x108E45: main (p.cpp:348)
+ n1: 3456 0x109523: Graph::loadGraphFromStdin() (new_allocator.h:104)
+  n0: 3456 0x108DFE: main (p.cpp:346)
+ n1: 3456 0x10955C: Graph::loadGraphFromStdin() (new_allocator.h:104)
+  n0: 3456 0x108DFE: main (p.cpp:346)
+ n1: 3456 0x1094A1: Graph::loadGraphFromStdin() (p.cpp:159)
+  n0: 3456 0x108DFE: main (p.cpp:346)
+ n1: 3456 0x1094E2: Graph::loadGraphFromStdin() (p.cpp:160)
+  n0: 3456 0x108DFE: main (p.cpp:346)
+ n1: 3432 0x109345: Graph::loadGraphFromStdin() (p.cpp:147)
+  n0: 3432 0x108DFE: main (p.cpp:346)
+ n1: 3432 0x109389: Graph::loadGraphFromStdin() (p.cpp:148)
+  n0: 3432 0x108DFE: main (p.cpp:346)
+ n1: 3432 0x1093CE: Graph::loadGraphFromStdin() (new_allocator.h:104)
+  n0: 3432 0x108DFE: main (p.cpp:346)
+ n1: 3432 0x109404: Graph::loadGraphFromStdin() (new_allocator.h:104)
+  n0: 3432 0x108DFE: main (p.cpp:346)
+ n0: 224 in 4 places, all below massif's threshold (1.00%)

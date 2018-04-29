@@ -6,11 +6,17 @@
 #include <assert.h> /* assert */
 #include <list>
 #include <stack>
-#include <queue>
+#include <deque>
 #include <set>
 #include <memory>
 
 using namespace std;
+
+//Debub
+#define console(x) cout << x << endl
+#define debug(x) cout << "Debug: " << x << endl
+
+//Proto
 class Vertex;
 
 class ResidualArc
@@ -24,11 +30,11 @@ class ResidualArc
     int getCapacity() { return _capacity - flux; }
     ResidualArc *pair;
     Vertex* dest_vertex;
+
     // Always init in pairs otherwise will SEGFAULT in pair
     ResidualArc(int c,Vertex* dest) : _capacity(c), flux(0),pair(NULL),dest_vertex(dest) {}
-    ResidualArc(int c,Vertex* dest, ResidualArc *p) : _capacity(c), flux(0), pair(p),dest_vertex(dest)
-    {
-        p->_setPair(pair);
+    ResidualArc(int c,Vertex* dest, ResidualArc *p) : _capacity(c), flux(0), pair(p),dest_vertex(dest){
+        p->_setPair(this);
     }
     void addFlux(int f) { flux += f; }
     int getFlux() { return flux; }
@@ -49,12 +55,14 @@ class Vertex
     Vertex() : excess_flux(0), height(0) {}
     // Vertex(int l, int c) : _l(l), _c(c), excess_flux(0), height(0) {}
 
-    ~Vertex(){
-        for(ResidualArc *c : _arcs)
-        {
-            delete c;
-        }
-    }
+    // ~Vertex(){
+    //     for(ResidualArc *c : _arcs)
+    //     {
+    //         delete c;
+    //     }
+    // }
+
+    void addExcess_Flux(int f){excess_flux+=f;}
 
     void addArc(ResidualArc *c)
     {
@@ -65,11 +73,7 @@ class Vertex
 class Graph
 {
   private:
-    int _l;
-    int _c;
-    Vertex *_source;
-    Vertex *_target;
-    Vertex *vertices;
+
     bool **_outputM;
     int _cost;
 
@@ -79,13 +83,19 @@ class Graph
     }
 
   public:
+    int _l;
+    int _c;
+    Vertex *_source;
+    Vertex *_target;
+    Vertex *vertices;
+
     Graph() : _source(new Vertex()), _target(new Vertex()) {}
 
     ~Graph()
     {
-        delete _source;
-        delete _target;
-        delete vertices;
+        // delete _source;
+        // delete _target;
+        // delete vertices;
     }
 
     void loadGraphFromStdin()
@@ -132,14 +142,24 @@ class Graph
         {
             for (int j = 0; j < _c - 1; j++)
             {
-                cin >> wv[i][j];
+                int w;
+                cin >> w;
+                ResidualArc *arc1 = new ResidualArc(w,getVertex(i,j+1));
+                ResidualArc *arc2 =new ResidualArc(w,getVertex(i,j),arc1);
+                getVertex(i,j)->addArc(arc1);
+                getVertex(i,j+1)->addArc(arc2);
             }
         }
         for (int i = 0; i < _l - 1; i++)
         {
             for (int j = 0; j < _c; j++)
             {
-                cin >> wh[i][j];
+                int w;
+                cin >> w;
+                ResidualArc *arc1 = new ResidualArc(w,getVertex(i+1,j));
+                ResidualArc *arc2 =new ResidualArc(w,getVertex(i,j),arc1);
+                getVertex(i,j)->addArc(arc1);
+                getVertex(i+1,j)->addArc(arc2);
             }
         }
 
@@ -153,30 +173,30 @@ class Graph
         // int wh[_l - 1][_c];
 
         //FIXME Nao facas matrizes
-        for (int t = 0; t < 2; t++)
-        {
-            for (int i = 0; i < _l; i++)
-            {
-                for (int j = 0; j < _c; j++)
-                {
-                    cin >> m[t][i][j];
-                }
-            }
-        }
-        for (int i = 0; i < _l; i++)
-        {
-            for (int j = 0; j < _c - 1; j++)
-            {
-                cin >> wv[i][j];
-            }
-        }
-        for (int i = 0; i < _l - 1; i++)
-        {
-            for (int j = 0; j < _c; j++)
-            {
-                cin >> wh[i][j];
-            }
-        }
+        // for (int t = 0; t < 2; t++)
+        // {
+        //     for (int i = 0; i < _l; i++)
+        //     {
+        //         for (int j = 0; j < _c; j++)
+        //         {
+        //             cin >> m[t][i][j];
+        //         }
+        //     }
+        // }
+        // for (int i = 0; i < _l; i++)
+        // {
+        //     for (int j = 0; j < _c - 1; j++)
+        //     {
+        //         cin >> wv[i][j];
+        //     }
+        // }
+        // for (int i = 0; i < _l - 1; i++)
+        // {
+        //     for (int j = 0; j < _c; j++)
+        //     {
+        //         cin >> wh[i][j];
+        //     }
+        // }
     }
 
     void printOutput()
@@ -199,15 +219,34 @@ class Graph
 
 class ReLabel
 {
-
+  private:
+    deque<Vertex*> L;
   public:
     void init_pre_flow(Graph g)
     {
+
+        g._source->height=g._l * g._c +2;//set height source
+        
+        for(ResidualArc* arc : g._source->_arcs)
+        {
+            debug("b capacity "<<arc->getCapacity());
+            int capacity = arc->getCapacity(); //since our capacity keeps changing
+            arc->pair->addFlux(-capacity);
+            arc->addFlux(capacity);
+            debug("after "<<arc->getCapacity()<< " ot "<<arc->pair->getCapacity());
+            arc->dest_vertex->excess_flux += capacity;
+            g._source->excess_flux -=capacity;
+        } 
+    }
+    void push(ResidualArc* arc){
+        // assert(arc->pair->dest_vertex)
     }
     void discharge(Vertex u)
     {
         while (u.excess_flux > 0)
         {
+            list<ResidualArc*> v_arc = u._arcs;
+
         }
     }
     void relabel(Vertex u)
@@ -215,6 +254,10 @@ class ReLabel
     }
     void run(Graph g)
     {
+        init_pre_flow(g);
+
+
+
     }
 };
 

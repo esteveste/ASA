@@ -222,16 +222,21 @@ class Graph
     }
 };
 
+
+
+
 class ReLabel
 {
   private:
     list<Vertex*> L;
     list<Vertex*>::iterator l_it;
+    Vertex* v_pushed;
+    int maxH;
   public:
     void init_pre_flow(Graph g)
     {
 
-        g._source->height=g._l * g._c +2;//set height source
+        g._source->height=10;//set height source
         
         for(ResidualArc* arc : g._source->_arcs)
         {
@@ -261,9 +266,30 @@ class ReLabel
 
 
     void push(Vertex* u,ResidualArc* arc){
-        assert(u->excess_flux>0 && u->height==arc->dest_vertex->height+1);
+        // assert(u->excess_flux>0 && u->height==arc->dest_vertex->height+1);
+        // int cap_nr=0;
+        // if (v_pushed==u)
+        // {
+        //     for(ResidualArc* arc : u->_arcs)
+        //     {
+        //         if (arc->getCapacity()>0){
+        //             cap_nr++;
+        //         }    
+        //     }
+        //     if (cap_nr<=2)
+        //     {
+        //         u->height=maxH;
+        //         arc->dest_vertex->height=maxH;
+        //     }
+        // }
+        // if (cap_nr>2)
+        // {
+        //     v_pushed = u;
+        // }else
+        // {
+        //     v_pushed = NULL;
+        // }
         
-
 
         int d = min(u->excess_flux,arc->getCapacity());
         arc->addFlux(d);
@@ -293,7 +319,7 @@ class ReLabel
             {
                 ResidualArc* arc = v_arcs.front();
                 v_arcs.pop_front();
-                if(arc->getCapacity()>0 && u->height==arc->dest_vertex->height+1){
+                if(arc->getCapacity()>0 && u->height>arc->dest_vertex->height){
                     push(u,arc);
                 }
             }
@@ -318,6 +344,7 @@ class ReLabel
     }
     void run(Graph g)
     {
+        maxH = g._l * g._c+2;
         init_pre_flow(g);
         createList(g);
         

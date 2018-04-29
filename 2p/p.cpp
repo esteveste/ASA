@@ -15,7 +15,6 @@ using namespace std;
 //Debub
 #define console(x) cout << x << endl
 #define debug(x) cout << "Debug: " << x << endl
-#define d 
 
 //Proto
 class Vertex;
@@ -235,12 +234,27 @@ class ReLabel
             arc->pair->addFlux(-capacity);
             arc->addFlux(capacity);
             debug("after "<<arc->getCapacity()<< " ot "<<arc->pair->getCapacity());
-            arc->dest_vertex->excess_flux += capacity;
             g._source->excess_flux -=capacity;
+            arc->dest_vertex->excess_flux += capacity;
         } 
     }
+    void createDeque(Graph g){
+        for (int i = 0; i < g._c * g._l; i++)
+        {
+            // L.push_back()
+        }
+    }
+
+
     void push(Vertex u,ResidualArc* arc){
-        assert(u.height>0 && u.height==arc->dest_vertex->height+1);
+        assert(u.excess_flux>0 && u.height==arc->dest_vertex->height+1);
+        
+        int d = min(u.excess_flux,arc->getCapacity());
+        arc->addFlux(d);
+        arc->pair->addFlux(-d);
+        u.excess_flux-=d;
+        arc->dest_vertex->excess_flux+=d;
+
     }
     void discharge(Vertex u)
     {
@@ -257,7 +271,7 @@ class ReLabel
                 ResidualArc* arc = v_arcs.front();
                 v_arcs.pop_front();
                 if(arc->getCapacity()>0 && u.height==arc->dest_vertex->height+1){
-                    // push();
+                    push(u,arc);
                 }
             }
 
@@ -279,7 +293,7 @@ class ReLabel
     void run(Graph g)
     {
         init_pre_flow(g);
-
+        
 
 
     }

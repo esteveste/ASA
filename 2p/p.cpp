@@ -15,6 +15,7 @@ using namespace std;
 //Debub
 #define console(x) cout << x << endl
 #define debug(x) cout << "Debug: " << x << endl
+#define d 
 
 //Proto
 class Vertex;
@@ -238,8 +239,8 @@ class ReLabel
             g._source->excess_flux -=capacity;
         } 
     }
-    void push(ResidualArc* arc){
-        // assert(arc->getCapacity()>0 && u.height==arc->dest_vertex->height+1)
+    void push(Vertex u,ResidualArc* arc){
+        assert(u.height>0 && u.height==arc->dest_vertex->height+1);
     }
     void discharge(Vertex u)
     {
@@ -264,6 +265,16 @@ class ReLabel
     }
     void relabel(Vertex u)
     {
+        int min_height=u._arcs.front()->dest_vertex->height;
+        for(ResidualArc* arc : u._arcs)
+        {
+            if (arc->dest_vertex->height<min_height)
+                min_height=arc->dest_vertex->height;
+        }
+        assert(u.excess_flux>0&&u.height<=min_height);
+        
+        u.height=min_height+1;
+
     }
     void run(Graph g)
     {

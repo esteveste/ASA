@@ -63,8 +63,10 @@ class Vertex
     bool process;
     bool visited;
     Vertex* pred; 
-    Vertex() : excess_flux(0), height(0), process(true),visited(false),pred(NULL){}
-    Vertex(bool p) : excess_flux(0), height(0), process(p),visited(false),pred(NULL){}
+    ResidualArc* pred_arc;
+
+    Vertex() : excess_flux(0), height(0), process(true),visited(false),pred(NULL),pred_arc(NULL){}
+    Vertex(bool p) : excess_flux(0), height(0), process(p),visited(false),pred(NULL),pred_arc(NULL){}
     // Vertex(int l, int c) : _l(l), _c(c), excess_flux(0), height(0) {}
 
     // ~Vertex(){
@@ -223,25 +225,25 @@ class Graph
         // }
     }
 
-    void printOutput()
+    void printOutput(int f)
     {
-        int total_flux=0;
-        for(ResidualArc* arcs : _target->_arcs)
-        {
-            total_flux+=arcs->getCapacity();
-        }
-        cout << total_flux << endl
+        // int total_flux=0;
+        // for(ResidualArc* arcs : _target->_arcs)
+        // {
+        //     total_flux+=arcs->getCapacity();
+        // }
+        cout << f << endl
              << endl;
 
-        for (int i = 0; i < _l; i++)
-        {
-            for (int j = 0; j < _c; j++)
-            {
-                cout << ((getVertex(i,j)->height>=_source->height) ? "C" : "P");
-                cout << " ";
-            }
-            cout << endl;
-        }
+        // for (int i = 0; i < _l; i++)
+        // {
+        //     for (int j = 0; j < _c; j++)
+        //     {
+        //         cout << ((getVertex(i,j)->height>=_source->height) ? "C" : "P");
+        //         cout << " ";
+        //     }
+        //     cout << endl;
+        // }
     }
 };
 
@@ -255,14 +257,17 @@ class BFS{
         g._target->visited=false;
         g._source->pred=NULL;
         g._target->pred=NULL;
+        g._source->pred_arc=NULL;
+        g._target->pred_arc=NULL;
         for (int i = 0; i < g._c * g._l; i++)
         {
             g.vertices[i].visited=false;
             g.vertices[i].pred=NULL;
+            g.vertices[i].pred_arc=NULL;
         }
     }
 
-    list<Vertex*> run(Graph g){
+    list<ResidualArc*> run(Graph g){
 
         initBFS(g);
 
@@ -288,6 +293,7 @@ class BFS{
                     
                     L.push_back(arc->dest_vertex);
                     arc->dest_vertex->pred=u;
+                    arc->dest_vertex->pred_arc=arc;
                     arc->dest_vertex->visited=true;
                     if (arc->dest_vertex==g._target){
                         debug("Break TARGET");
@@ -297,19 +303,20 @@ class BFS{
             }
 
         }
-        L.clear();
-        if (g._target->pred==NULL)
+        // L.clear();
+        list<ResidualArc*> Larcs;
+        if (g._target->visited==false)
         {
-            return L;
+            return Larcs;
         }else
         {
-            Vertex* u = g._target->pred;
-            while (u!=NULL)
+            Vertex* u = g._target;
+            while (u->pred_arc!=NULL)
             {
-                L.push_front(u);
+                Larcs.push_front(u->pred_arc);
                 u = u->pred;
             }
-            return L;
+            return Larcs;
         }
 
 
@@ -318,17 +325,28 @@ class BFS{
 
 
 class EdmondsKarp{
+    public:
     int run(Graph g){
         int flow=0;
         while (true)
         {
             BFS search;
-            list<Vertex *> pred = search.run(g);
+            list<ResidualArc *> pred = search.run(g);
 
             if (pred.size()!=0)
             {
                 //check how much flow we can send
-
+                int df = INT_MAX;
+                for(ResidualArc* arc : pred)
+                {
+                    df = min(df,arc->getCapacity());
+                }
+                for(ResidualArc* arc : pred)
+                {
+                    arc->addFlux(df);
+                    arc->pair->addFlux(-df);
+                }
+                flow+=df;
 
             }else
             {
@@ -351,7 +369,7 @@ class ReLabel
     void init_pre_flow(Graph g)
     {
 
-        g._source->height=2;//set height source
+        g._source->height=g._l * g._c+2;//set height source
         
         for(ResidualArc* arc : g._source->_arcs)
         {
@@ -491,8 +509,7 @@ int main()
 {
     Graph g;
     g.loadGraphFromStdin();
-    ReLabel algorithm;
-    algorithm.run(g);
-    g.printOutput();
+    EdmondsKarp algorithm;
+    g.printOutput(algorithm.run(g));
     return 0;
 }

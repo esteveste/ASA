@@ -228,6 +228,15 @@ class Graph
 };
 
 
+class Dinic{
+    void run(Graph g){
+
+    }
+};
+
+class BFS{
+    void run()
+}
 
 
 class ReLabel

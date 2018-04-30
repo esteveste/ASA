@@ -93,11 +93,12 @@ class Graph
   public:
     int _l;
     int _c;
+    int flowCarry;
     Vertex *_source;
     Vertex *_target;
     Vertex *vertices;
 
-    Graph() : _source(new Vertex(false)), _target(new Vertex(false)) {}
+    Graph() :flowCarry(0), _source(new Vertex(false)), _target(new Vertex(false)) {}
 
     ~Graph()
     {
@@ -119,46 +120,68 @@ class Graph
         assert(_l >= 1);
         assert(_c >= 1);
 
-        // bool outm[_l][_c];
-        // _outputM = (bool **)outm;
+        int count[_l*_c];
 
-        vertices = new Vertex[_l * _c];
-
-        //Get The P's
+        //P calc
         for (int i = 0; i < _l; i++)
         {
             for (int j = 0; j < _c; j++)
             {
-                int p;
-                cin >> p;
-                if (p!=0)
+                cin >>count[i*_c+j];
+            }
+        }
+        // C calc
+        for (int i = 0; i < _l; i++)
+        {
+            for (int j = 0; j < _c; j++)
+            {
+                int temp;
+                cin >>temp;
+                flowCarry += min(count[i*_c+j],temp);
+                count[i*_c+j]-=temp;
+            }
+        }
+
+        vertices = new Vertex[_l * _c];
+        //Put the right values
+        for (int i = 0; i < _l; i++)
+        {
+            for (int j = 0; j < _c; j++)
+            {
+                int value=count[i*_c+j];
+                if (value>0)
                 {
-                    ResidualArc *s_arc = new ResidualArc(p,getVertex(i,j));
+                    ResidualArc *s_arc = new ResidualArc(value,getVertex(i,j));
                     ResidualArc *v_pair = new ResidualArc(0,_source,s_arc);
                     _source->addArc(s_arc);
                     getVertex(i,j)->addArc(v_pair);    
+                }else if(value<0){
+                    ResidualArc *t_arc = new ResidualArc(0,getVertex(i,j));
+                    ResidualArc *v_pair = new ResidualArc(-value,_target,t_arc);
+                    _target->addArc(t_arc);
+                    getVertex(i,j)->addArc(v_pair);
                 }
 
          
             }
         }
-        //Get The C's
-        for (int i = 0; i < _l; i++)
-        {
-            for (int j = 0; j < _c; j++)
-            {
-                int c;
-                cin >> c;
-                if (c!=0)
-                {
-                    ResidualArc *t_arc = new ResidualArc(0,getVertex(i,j));
-                    ResidualArc *v_pair = new ResidualArc(c,_target,t_arc);
-                    _target->addArc(t_arc);
-                    getVertex(i,j)->addArc(v_pair);
-                }
+        // //Get The C's
+        // for (int i = 0; i < _l; i++)
+        // {
+        //     for (int j = 0; j < _c; j++)
+        //     {
+        //         int c;
+        //         cin >> c;
+        //         if (c!=0)
+        //         {
+        //             ResidualArc *t_arc = new ResidualArc(0,getVertex(i,j));
+        //             ResidualArc *v_pair = new ResidualArc(c,_target,t_arc);
+        //             _target->addArc(t_arc);
+        //             getVertex(i,j)->addArc(v_pair);
+        //         }
 
-            }
-        }
+        //     }
+        // }
 
         for (int i = 0; i < _l; i++)
         {
@@ -190,63 +213,28 @@ class Graph
                 }
             }
         }
-
-
-
-
-
-
-        // int m[2][_l][_c];
-        // int wv[_l][_c - 1];
-        // int wh[_l - 1][_c];
-
-        //FIXME Nao facas matrizes
-        // for (int t = 0; t < 2; t++)
-        // {
-        //     for (int i = 0; i < _l; i++)
-        //     {
-        //         for (int j = 0; j < _c; j++)
-        //         {
-        //             cin >> m[t][i][j];
-        //         }
-        //     }
-        // }
-        // for (int i = 0; i < _l; i++)
-        // {
-        //     for (int j = 0; j < _c - 1; j++)
-        //     {
-        //         cin >> wv[i][j];
-        //     }
-        // }
-        // for (int i = 0; i < _l - 1; i++)
-        // {
-        //     for (int j = 0; j < _c; j++)
-        //     {
-        //         cin >> wh[i][j];
-        //     }
-        // }
     }
 
-    void printOutput()
-    {
-        // int total_flux=0;
-        // for(ResidualArc* arcs : _target->_arcs)
-        // {
-        //     total_flux+=arcs->getCapacity();
-        // }
-        // cout << f << endl
-        //      << endl;
+    // void printOutput()
+    // {
+    //     int total_flux=0;
+    //     for(ResidualArc* arcs : _target->_arcs)
+    //     {
+    //         total_flux+=arcs->getCapacity();
+    //     }
+    //     cout << total_flux << endl
+    //          << endl;
 
-        // for (int i = 0; i < _l; i++)
-        // {
-        //     for (int j = 0; j < _c; j++)
-        //     {
-        //         cout << ((getVertex(i,j)->height>=_source->height) ? "C" : "P");
-        //         cout << " ";
-        //     }
-        //     cout << endl;
-        // }
-    }
+    //     for (int i = 0; i < _l; i++)
+    //     {
+    //         for (int j = 0; j < _c; j++)
+    //         {
+    //             cout << ((getVertex(i,j)->height>=_source->height) ? "C" : "P");
+    //             cout << " ";
+    //         }
+    //         cout << endl;
+    //     }
+    // }
 };
 
 
@@ -363,7 +351,7 @@ class EdmondsKarp{
     }
 
     void printOutput(Graph g){
-        cout << flow << endl<< endl;
+        cout << flow + g.flowCarry << endl<< endl;
         for (int i = 0; i < g._l; i++)
         {
             for (int j = 0; j < g._c; j++)
@@ -377,152 +365,152 @@ class EdmondsKarp{
 };
 
 
-class ReLabel
-{
-  private:
-    list<Vertex*> L;
-    list<Vertex*>::iterator l_it;
-    Vertex* v_pushed;
-    int maxH;
-  public:
-    void init_pre_flow(Graph g)
-    {
+// class ReLabel
+// {
+//   private:
+//     list<Vertex*> L;
+//     list<Vertex*>::iterator l_it;
+//     Vertex* v_pushed;
+//     int maxH;
+//   public:
+//     void init_pre_flow(Graph g)
+//     {
 
-        g._source->height=g._l * g._c+2;//set height source
+//         g._source->height=g._l * g._c+2;//set height source
         
-        for(ResidualArc* arc : g._source->_arcs)
-        {
-            int capacity = arc->getCapacity(); //since our capacity keeps changing
-            if (capacity>0)
-            {
-                arc->pair->addFlux(-capacity);
-                arc->addFlux(capacity);
-                g._source->excess_flux -=capacity;
-                arc->dest_vertex->excess_flux += capacity;
-                L.push_front(arc->dest_vertex);
-            }
+//         for(ResidualArc* arc : g._source->_arcs)
+//         {
+//             int capacity = arc->getCapacity(); //since our capacity keeps changing
+//             if (capacity>0)
+//             {
+//                 arc->pair->addFlux(-capacity);
+//                 arc->addFlux(capacity);
+//                 g._source->excess_flux -=capacity;
+//                 arc->dest_vertex->excess_flux += capacity;
+//                 L.push_front(arc->dest_vertex);
+//             }
 
-        } 
-    }
-    void createList(Graph g){
-        // for (int i = 0; i < g._l; i++)
-        // {
-        //     for (int j = 0; j < g._c; j++)
-        //     {
-        //         //the vertices in Graph are fixed array
-        //         //source and target not included
-        //         L.push_back(g.getVertex(i,j));
-        //     }
-        // }
-    }
+//         } 
+//     }
+//     void createList(Graph g){
+//         // for (int i = 0; i < g._l; i++)
+//         // {
+//         //     for (int j = 0; j < g._c; j++)
+//         //     {
+//         //         //the vertices in Graph are fixed array
+//         //         //source and target not included
+//         //         L.push_back(g.getVertex(i,j));
+//         //     }
+//         // }
+//     }
 
 
-    void push(Vertex* u,ResidualArc* arc){
-        // assert(u->excess_flux>0 && u->height==arc->dest_vertex->height+1);
-        // int cap_nr=0;
-        // if (v_pushed==u)
-        // {
-        //     for(ResidualArc* arc : u->_arcs)
-        //     {
-        //         if (arc->getCapacity()>0){
-        //             cap_nr++;
-        //         }    
-        //     }
-        //     if (cap_nr<=2)
-        //     {
-        //         u->height=maxH;
-        //         arc->dest_vertex->height=maxH;
-        //     }
-        // }
-        // if (cap_nr>2)
-        // {
-        //     v_pushed = u;
-        // }else
-        // {
-        //     v_pushed = NULL;
-        // }
-        
-
-        int d = min(u->excess_flux,arc->getCapacity());
-        arc->addFlux(d);
-        arc->pair->addFlux(-d);
-        u->excess_flux-=d;
-        arc->dest_vertex->excess_flux+=d;
-
-        if (arc->dest_vertex->process)
-        {
-            L.push_front(arc->dest_vertex);
-            l_it= L.begin();
-        }
+//     void push(Vertex* u,ResidualArc* arc){
+//         // assert(u->excess_flux>0 && u->height==arc->dest_vertex->height+1);
+//         // int cap_nr=0;
+//         // if (v_pushed==u)
+//         // {
+//         //     for(ResidualArc* arc : u->_arcs)
+//         //     {
+//         //         if (arc->getCapacity()>0){
+//         //             cap_nr++;
+//         //         }    
+//         //     }
+//         //     if (cap_nr<=2)
+//         //     {
+//         //         u->height=maxH;
+//         //         arc->dest_vertex->height=maxH;
+//         //     }
+//         // }
+//         // if (cap_nr>2)
+//         // {
+//         //     v_pushed = u;
+//         // }else
+//         // {
+//         //     v_pushed = NULL;
+//         // }
         
 
-    }
-    void discharge(Vertex* u)
-    {
-        list<ResidualArc*> v_arcs = u->_arcs;
+//         int d = min(u->excess_flux,arc->getCapacity());
+//         arc->addFlux(d);
+//         arc->pair->addFlux(-d);
+//         u->excess_flux-=d;
+//         arc->dest_vertex->excess_flux+=d;
 
-        while (u->excess_flux > 0)
-        {
-            if (v_arcs.size()==0)
-            {
-                relabel(u);
-                v_arcs = u->_arcs;
-            }else
-            {
-                ResidualArc* arc = v_arcs.front();
-                v_arcs.pop_front();
-                if(arc->getCapacity()>0 && u->height>arc->dest_vertex->height){
-                    push(u,arc);
-                }
-            }
+//         if (arc->dest_vertex->process)
+//         {
+//             L.push_front(arc->dest_vertex);
+//             l_it= L.begin();
+//         }
+        
 
-        }
-    }
-    void relabel(Vertex* u)
-    {
-        int min_height=INT_MAX;
-        for(ResidualArc* arc : u->_arcs)
-        {
-            if (arc->getCapacity()>0&&arc->dest_vertex->height<min_height){
-                min_height=arc->dest_vertex->height;
-            }
+//     }
+//     void discharge(Vertex* u)
+//     {
+//         list<ResidualArc*> v_arcs = u->_arcs;
+
+//         while (u->excess_flux > 0)
+//         {
+//             if (v_arcs.size()==0)
+//             {
+//                 relabel(u);
+//                 v_arcs = u->_arcs;
+//             }else
+//             {
+//                 ResidualArc* arc = v_arcs.front();
+//                 v_arcs.pop_front();
+//                 if(arc->getCapacity()>0 && u->height>arc->dest_vertex->height){
+//                     push(u,arc);
+//                 }
+//             }
+
+//         }
+//     }
+//     void relabel(Vertex* u)
+//     {
+//         int min_height=INT_MAX;
+//         for(ResidualArc* arc : u->_arcs)
+//         {
+//             if (arc->getCapacity()>0&&arc->dest_vertex->height<min_height){
+//                 min_height=arc->dest_vertex->height;
+//             }
             
-        }
-        assert(u->excess_flux>0);
-        assert(u->height<=min_height);
+//         }
+//         assert(u->excess_flux>0);
+//         assert(u->height<=min_height);
         
-        u->height=min_height+1;
+//         u->height=min_height+1;
 
-    }
-    void run(Graph g)
-    {
-        maxH = g._l * g._c+2;
-        init_pre_flow(g);
-        createList(g);
+//     }
+//     void run(Graph g)
+//     {
+//         maxH = g._l * g._c+2;
+//         init_pre_flow(g);
+//         createList(g);
         
 
-        l_it= L.begin();
-        Vertex* u = *(l_it);
-        while (l_it!= L.end())
-        {
-            l_it=L.erase(l_it);
-            // int old_height = u->height;
-            discharge(u);
-            //relabel occured
-            // if (u->height>old_height)
-            // {
+//         l_it= L.begin();
+//         Vertex* u = *(l_it);
+//         while (l_it!= L.end())
+//         {
+//             l_it=L.erase(l_it);
+//             // int old_height = u->height;
+//             discharge(u);
+//             //relabel occured
+//             // if (u->height>old_height)
+//             // {
 
-            // L.push_front(u);
-            // l_it= L.begin();
-            // }
+//             // L.push_front(u);
+//             // l_it= L.begin();
+//             // }
             
-            u = *(l_it);
+//             u = *(l_it);
 
 
-        }
+//         }
 
-    }
-};
+//     }
+// };
 
 int main()
 {

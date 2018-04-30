@@ -15,7 +15,7 @@ using namespace std;
 
 //Debub
 #define console(x) cout << x << endl
-#define debug(x) cout << "Debug: " << x << endl
+#define debug(x) //cout << "Debug: " << x << endl
 
 //Proto
 class Vertex;
@@ -62,11 +62,13 @@ class Vertex
     int height;
     bool process;
     bool visited;
+
     Vertex* pred; 
     ResidualArc* pred_arc;
-
-    Vertex() : excess_flux(0), height(0), process(true),visited(false),pred(NULL),pred_arc(NULL){}
-    Vertex(bool p) : excess_flux(0), height(0), process(p),visited(false),pred(NULL),pred_arc(NULL){}
+    bool out;
+    
+    Vertex() : excess_flux(0), height(0), process(true),visited(false),pred(NULL),pred_arc(NULL),out(false){}
+    Vertex(bool p) : excess_flux(0), height(0), process(p),visited(false),pred(NULL),pred_arc(NULL),out(false){}
     // Vertex(int l, int c) : _l(l), _c(c), excess_flux(0), height(0) {}
 
     // ~Vertex(){
@@ -225,15 +227,15 @@ class Graph
         // }
     }
 
-    void printOutput(int f)
+    void printOutput()
     {
         // int total_flux=0;
         // for(ResidualArc* arcs : _target->_arcs)
         // {
         //     total_flux+=arcs->getCapacity();
         // }
-        cout << f << endl
-             << endl;
+        // cout << f << endl
+        //      << endl;
 
         // for (int i = 0; i < _l; i++)
         // {
@@ -325,9 +327,13 @@ class BFS{
 
 
 class EdmondsKarp{
+    private:
+    int flow;
+
     public:
+    EdmondsKarp():flow(0){}
     int run(Graph g){
-        int flow=0;
+        flow=0;
         while (true)
         {
             BFS search;
@@ -354,6 +360,19 @@ class EdmondsKarp{
             }
         }
 
+    }
+
+    void printOutput(Graph g){
+        cout << flow << endl<< endl;
+        for (int i = 0; i < g._l; i++)
+        {
+            for (int j = 0; j < g._c; j++)
+            {
+                cout << (g.getVertex(i,j)->visited ? "C" : "P");
+                cout << " ";
+            }
+            cout << endl;
+        }
     }
 };
 
@@ -510,6 +529,8 @@ int main()
     Graph g;
     g.loadGraphFromStdin();
     EdmondsKarp algorithm;
-    g.printOutput(algorithm.run(g));
+    algorithm.run(g);
+    algorithm.printOutput(g);
+    // g.printOutput();
     return 0;
 }

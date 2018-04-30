@@ -6,8 +6,8 @@
 #include <assert.h> /* assert */
 #include <list>
 #include <stack>
-// #include <deque>
-#include <set>
+#include <deque>
+#include <set> //is a tree
 #include <memory>
 #include <climits>
 
@@ -19,6 +19,7 @@ using namespace std;
 
 //Proto
 class Vertex;
+// class BFS;
 
 class ResidualArc
 {
@@ -60,8 +61,10 @@ class Vertex
     int excess_flux;
     int height;
     bool process;
-    Vertex() : excess_flux(0), height(0), process(true){}
-    Vertex(bool p) : excess_flux(0), height(0), process(p){}
+    bool visited;
+    Vertex* pred; 
+    Vertex() : excess_flux(0), height(0), process(true),visited(false),pred(NULL){}
+    Vertex(bool p) : excess_flux(0), height(0), process(p),visited(false),pred(NULL){}
     // Vertex(int l, int c) : _l(l), _c(c), excess_flux(0), height(0) {}
 
     // ~Vertex(){
@@ -124,10 +127,15 @@ class Graph
             {
                 int p;
                 cin >> p;
-                ResidualArc *s_arc = new ResidualArc(p,getVertex(i,j));
-                ResidualArc *v_pair = new ResidualArc(0,_source,s_arc);
-                _source->addArc(s_arc);
-                getVertex(i,j)->addArc(v_pair);             
+                if (p!=0)
+                {
+                    ResidualArc *s_arc = new ResidualArc(p,getVertex(i,j));
+                    ResidualArc *v_pair = new ResidualArc(0,_source,s_arc);
+                    _source->addArc(s_arc);
+                    getVertex(i,j)->addArc(v_pair);    
+                }
+
+         
             }
         }
         //Get The C's
@@ -137,10 +145,14 @@ class Graph
             {
                 int c;
                 cin >> c;
-                ResidualArc *t_arc = new ResidualArc(0,getVertex(i,j));
-                ResidualArc *v_pair = new ResidualArc(c,_target,t_arc);
-                _target->addArc(t_arc);
-                getVertex(i,j)->addArc(v_pair);
+                if (c!=0)
+                {
+                    ResidualArc *t_arc = new ResidualArc(0,getVertex(i,j));
+                    ResidualArc *v_pair = new ResidualArc(c,_target,t_arc);
+                    _target->addArc(t_arc);
+                    getVertex(i,j)->addArc(v_pair);
+                }
+
             }
         }
 
@@ -150,10 +162,14 @@ class Graph
             {
                 int w;
                 cin >> w;
-                ResidualArc *arc1 = new ResidualArc(w,getVertex(i,j+1));
-                ResidualArc *arc2 =new ResidualArc(w,getVertex(i,j),arc1);
-                getVertex(i,j)->addArc(arc1);
-                getVertex(i,j+1)->addArc(arc2);
+                if (w!=0)
+                {
+                    ResidualArc *arc1 = new ResidualArc(w,getVertex(i,j+1));
+                    ResidualArc *arc2 =new ResidualArc(w,getVertex(i,j),arc1);
+                    getVertex(i,j)->addArc(arc1);
+                    getVertex(i,j+1)->addArc(arc2);
+                }
+
             }
         }
         for (int i = 0; i < _l - 1; i++)
@@ -162,10 +178,12 @@ class Graph
             {
                 int w;
                 cin >> w;
-                ResidualArc *arc1 = new ResidualArc(w,getVertex(i+1,j));
-                ResidualArc *arc2 =new ResidualArc(w,getVertex(i,j),arc1);
-                getVertex(i,j)->addArc(arc1);
-                getVertex(i+1,j)->addArc(arc2);
+                if(w!=0){
+                    ResidualArc *arc1 = new ResidualArc(w,getVertex(i+1,j));
+                    ResidualArc *arc2 =new ResidualArc(w,getVertex(i,j),arc1);
+                    getVertex(i,j)->addArc(arc1);
+                    getVertex(i+1,j)->addArc(arc2);
+                }
             }
         }
 
@@ -228,15 +246,98 @@ class Graph
 };
 
 
-class Dinic{
-    void run(Graph g){
+class BFS{
+    public:
+
+
+    void initBFS(Graph g){
+        g._source->visited=false;
+        g._target->visited=false;
+        g._source->pred=NULL;
+        g._target->pred=NULL;
+        for (int i = 0; i < g._c * g._l; i++)
+        {
+            g.vertices[i].visited=false;
+            g.vertices[i].pred=NULL;
+        }
+    }
+
+    list<Vertex*> run(Graph g){
+
+        initBFS(g);
+
+        list<Vertex *> L;
+        set<Vertex*> T;
+        // L.clear();
+        // T.clear();
+
+        // int distance = 0;
+        L.push_front(g._source);
+        T.insert(g._source);
+        g._source->visited=true;
+
+        while (g._target->pred==NULL&&L.size()!=0)
+        {
+            Vertex* u=L.front();
+            L.pop_front();
+            for(ResidualArc* arc : u->_arcs)
+            {
+                if (!arc->dest_vertex->visited&&arc->getCapacity()>0)
+                {
+                    //distance
+                    
+                    L.push_back(arc->dest_vertex);
+                    arc->dest_vertex->pred=u;
+                    arc->dest_vertex->visited=true;
+                    if (arc->dest_vertex==g._target){
+                        debug("Break TARGET");
+                        break;
+                    }
+                }
+            }
+
+        }
+        L.clear();
+        if (g._target->pred==NULL)
+        {
+            return L;
+        }else
+        {
+            Vertex* u = g._target->pred;
+            while (u!=NULL)
+            {
+                L.push_front(u);
+                u = u->pred;
+            }
+            return L;
+        }
+
 
     }
 };
 
-class BFS{
-    void run()
-}
+
+class EdmondsKarp{
+    int run(Graph g){
+        int flow=0;
+        while (true)
+        {
+            BFS search;
+            list<Vertex *> pred = search.run(g);
+
+            if (pred.size()!=0)
+            {
+                //check how much flow we can send
+
+
+            }else
+            {
+                return flow;
+            }
+        }
+
+    }
+};
 
 
 class ReLabel
@@ -250,7 +351,7 @@ class ReLabel
     void init_pre_flow(Graph g)
     {
 
-        g._source->height=10;//set height source
+        g._source->height=2;//set height source
         
         for(ResidualArc* arc : g._source->_arcs)
         {

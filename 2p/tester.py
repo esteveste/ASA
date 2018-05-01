@@ -1,4 +1,3 @@
-from __future__ import print_function
 try:
     import matplotlib.pyplot as plt
     import seaborn as sns
@@ -21,7 +20,7 @@ import sys
 import time
 from subprocess import Popen, PIPE
 
-NR_TESTES=10
+NR_TESTES=20
 PASSOS=10
 
 # Complexidade linha
